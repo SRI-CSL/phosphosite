@@ -37,18 +37,18 @@ proteins = [
 ]
 
 
-url = "http://www.phosphosite.org/simpleSearchSubmitAction.action?queryId=-1&from=0&searchStr={0}"
+url_1 = "http://www.phosphosite.org/simpleSearchSubmitAction.action?queryId=-1&from=0&searchStr={0}"
 
 
 
-firstIdPattern = re.compile('id=(\d*)')
+idPattern = re.compile('id=(\d*)')
 
 # the first looks to be the one we want. but we could pattern match if that fails.
 # do the simple minded thing first.
 #<a class="link13HoverRed" href="/../proteinAction.action?id=2791&amp;showAllSites=true">human</a>
 #http://www.phosphosite.org/proteinAction.action?id=2791&showAllSites=true
 def firstLink(p):
-    f =  urllib2.urlopen(url.format(p))
+    f =  urllib2.urlopen(url_1.format(p))
     html_doc = f.read()
 
     soup = BeautifulSoup(html_doc, 'html.parser')
@@ -57,7 +57,10 @@ def firstLink(p):
 
     candidate = soup.find_all('a', class_='link13HoverRed')[0] #first element looks to be the one we want.
 
-    match = firstIdPattern.search(str(candidate))
+
+    print candidate
+
+    match = idPattern.search(str(candidate))
 
     if match:
         retval = match.group(1)
@@ -66,10 +69,10 @@ def firstLink(p):
 
     return retval
 
-
-
-for p in proteins:
-    print '# {0}\n{1},'.format(p, firstLink(p))
+# turn off, temporarily, while we have the data below.
+if False:
+    for p in proteins:
+        print '# {0}\n{1},'.format(p, firstLink(p))
 
 #from which we deduce we get
 
@@ -128,3 +131,29 @@ protein_ids = [
     # YBX1
     2629,
 ]
+
+
+#url_2 = 'http://www.phosphosite.org/proteinAction.action?id={0}&showAllSites=true'
+url_2 = 'http://www.phosphosite.org/proteinModificationSitesDomainsAction.action?id={0}&showAllSites=true'
+
+def secondLink(pid, accumulator):
+    f =  urllib2.urlopen(url_2.format(pid))
+    html_doc = f.read()
+
+    soup = BeautifulSoup(html_doc, 'html.parser') #maybe this is the culprit
+
+    candidates =  soup.find_all('a', href=re.compile('siteAction'))
+    for c in candidates:
+        match = idPattern.search(str(c))
+        if match:
+            accumulator.add(match.group(1))
+
+
+#<a href="/../siteAction.action?id=2885">T308\u2011p</a>
+
+if True:
+    result = set()
+    for pid in protein_ids:
+        result = set()
+        secondLink(pid, result)
+        print '# {0}\n\n{1},'.format(pid, result)

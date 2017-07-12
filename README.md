@@ -41,7 +41,32 @@ protein stabilization:
 ubiquitination:
 ```
 
-This next step needs clatification, since I do not see a `controlled by` in, for example:
+
 ```
-http://www.phosphosite.org/siteAction.action?id=1988200
+http://www.phosphosite.org/proteinAction.action?id=570&showAllSites=true
+
+```
+
+OK so problem (gotcha number 1) is that the desired stuff in the second page result is an ajax call.
+And isn't in the second page itself.
+
+```
+  <script type="text/javascript">
+   $(document).ready(function () {
+        //call to get Modification Sites & proteinOrganisms Data
+        $("#siteDomainWaitDiv").show();
+        var serviceUrl = "proteinModificationSitesDomainsAction.action?id=" + 570 + "&showAllSites=" + true;
+
+        $("#proteinModificationSitesDetails").load(serviceUrl, function(responseTxt, statusTxt, xhr){
+            if(statusTxt == "success")
+                $("#siteDomainWaitDiv").hide();
+            if(statusTxt == "error")
+                $("#proteinModificationSitesDetails").html("Unexpected error ");
+        });
+    });
+  </script>
+```
+
+```
+http://www.phosphosite.org/proteinModificationSitesDomainsAction.action?id=570&showAllSites=true
 ```
