@@ -40,3 +40,8 @@ phosphorylation:
 protein stabilization:
 ubiquitination:
 ```
+
+This next step needs clatification, since I do not see a `controlled by` in, for example:
+```
+http://www.phosphosite.org/siteAction.action?id=1988200
+```
