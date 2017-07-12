@@ -140,7 +140,7 @@ def secondLink(pid, accumulator):
     f =  urllib2.urlopen(url_2.format(pid))
     html_doc = f.read()
 
-    soup = BeautifulSoup(html_doc, 'html.parser') #maybe this is the culprit
+    soup = BeautifulSoup(html_doc, 'html.parser')
 
     candidates =  soup.find_all('a', href=re.compile('siteAction'))
     for c in candidates:
@@ -151,9 +151,25 @@ def secondLink(pid, accumulator):
 
 #<a href="/../siteAction.action?id=2885">T308\u2011p</a>
 
-if True:
-    result = set()
+if False:
     for pid in protein_ids:
         result = set()
         secondLink(pid, result)
         print '# {0}\n\n{1},'.format(pid, result)
+
+
+
+url_3 = 'http://www.phosphosite.org/siteAction.action?id={0}'
+
+
+def thirdLink(pid):
+    f =  urllib2.urlopen(url_3.format(pid))
+    html_doc = f.read()
+
+    soup = BeautifulSoup(html_doc, 'html.parser')
+
+    print(soup.prettify())
+
+
+
+thirdLink(2886)
