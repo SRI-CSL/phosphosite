@@ -200,7 +200,10 @@ def thirdLink(pid):
     else:
         print 'Nope'
     #ok get the references too.
-    refs = soup.find_all('a',class_="anchor",href=re.compile('#top'))
+    anchors = soup.find_all('a',class_="anchor",href=re.compile('#top'))
+    refs = []
+    for anchor in anchors:
+        refs.append(anchor.parent.parent.parent)
     print refs
 
 
