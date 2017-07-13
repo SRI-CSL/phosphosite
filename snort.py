@@ -164,7 +164,9 @@ url_3 = 'http://www.phosphosite.org/siteAction.action?id={0}'
 
 categories = [
     'Regulatory protein',
+    'Putative in vivo kinases',
     'Putative upstream phosphatases',
+    'Kinases',
     'Phosphatases',
     'Treatments',
     ]
@@ -178,7 +180,15 @@ def thirdLink(pid):
     candidate = soup.find_all('td', string=re.compile('Controlled by '))  #
     if candidate:
         candidate = candidate[0].parent.parent #get the containing table.
-        print(candidate.prettify()) #soup.prettify())
+        #navigate down to the
+        candidate = candidate.contents[3]
+        candidate = candidate.contents[1]
+        candidate = candidate.contents[1]
+        tds = candidate.find_all('td')
+        num = 0
+        for td in tds:
+            num += 1
+            print 'td_{0}'.format(num), td
     else:
         print 'Nope'
 
