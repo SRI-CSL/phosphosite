@@ -199,6 +199,9 @@ def thirdLink(pid):
         processTds(tds)
     else:
         print 'Nope'
+    #ok get the references too.
+    refs = soup.find_all('a',class_="anchor",href=re.compile('#top'))
+    print refs
 
 
 #http://www.phosphosite.org/siteAction.action?id=2886
