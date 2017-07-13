@@ -155,12 +155,19 @@ if False:
     for pid in protein_ids:
         result = set()
         secondLink(pid, result)
-        print '# {0}\n\n{1},'.format(pid, result)
+        print '\n# ', 10 * '-', pid, 10 * '-', '\n\n', result
 
 
 
 url_3 = 'http://www.phosphosite.org/siteAction.action?id={0}'
 
+
+categories = [
+    'Regulatory protein',
+    'Putative upstream phosphatases',
+    'Phosphatases',
+    'Treatments',
+    ]
 
 def thirdLink(pid):
     f =  urllib2.urlopen(url_3.format(pid))
@@ -168,8 +175,13 @@ def thirdLink(pid):
 
     soup = BeautifulSoup(html_doc, 'html.parser')
 
-    print(soup.prettify())
+    candidate = soup.find_all('td', string=re.compile('Controlled by '))  #
+    if candidate:
+        candidate = candidate[0].parent.parent #get the containing table.
+        print(candidate.prettify()) #soup.prettify())
+    else:
+        print 'Nope'
 
 
-
+#http://www.phosphosite.org/siteAction.action?id=2886
 thirdLink(2886)
