@@ -204,7 +204,8 @@ def thirdLink(pid):
     refs = []
     for anchor in anchors:
         refs.append(anchor.parent.parent.parent)
-    print refs
+    for ref in refs:
+        print ref.prettify()
 
 
 #http://www.phosphosite.org/siteAction.action?id=2886
