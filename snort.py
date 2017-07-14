@@ -199,13 +199,14 @@ def processSpans(td, references, results, category):
             continue
         if child.name == 'span':
             cval = []
-            hmap[str(child.text).replace(' (human)', '')] = cval
+            key = str(child.text).replace(' (human)', '').replace("'", '') #5'-methylthioadenosine (1)
+            hmap[key] = cval
         else:
             cval.append(references[int(child.text)])
     return hmap
 
 
-def processTds(tds, references, results):
+def processTds(pid, tds, references, results, fails):
     num = 0
     category = ''
     while tds:
@@ -218,7 +219,12 @@ def processTds(tds, references, results):
         #print 'td_{0}.spans.text'.format(num), [ str(x.text).replace(' (human)', '') for x in tds[1].find_all('span') ]
         #print 'td_{0}.anchors.text'.format(num), [ int(x.text) for x in tds[1].find_all('a') ]
         #print 'td_{0}.references'.format(num), [ references[int(x.text)] for x in tds[1].find_all('a') ]
-        results[category] = processSpans(tds[1], references, results, category)
+        spans = processSpans(tds[1], references, results, category)
+        if spans:
+            results[category] = processSpans(tds[1], references, results, category)
+        else:
+            print 'Nyet'
+            fails[pid] = True
         #results[category] = ([ str(x.text).replace(' (human)', '') for x in tds[1].find_all('span') ], [ references[int(x.text)] for x in tds[1].find_all('a') ])
 
         tds = tds[2:]
@@ -266,7 +272,7 @@ def thirdLink(pid, database_2, fails):
         candidate = candidate.contents[1]
         candidate = candidate.contents[1]
         tds = candidate.find_all('td')
-        processTds(tds, references, results)
+        processTds(pid, tds, references, results, fails)
     else:
         fails[pid] = True
         print 'Nope'
@@ -275,10 +281,13 @@ def thirdLink(pid, database_2, fails):
 if True:
     for key in database_1:
         for pid in database_1[key]:
-            if not pid in database_2 and pid not in fails:
-                sys.stderr.write('.')
-                thirdLink(pid, database_2, fails)
-    sys.stderr.write('\n')
+            if not pid in database_2:
+                if pid not in fails:
+                    sys.stderr.write('.')
+                    thirdLink(pid, database_2, fails)
+                else:
+                    print 'Failure'
+        sys.stderr.write('\n')
 
 
 #http://www.phosphosite.org/siteAction.action?id=2886
