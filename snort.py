@@ -203,9 +203,9 @@ def thirdLink(pid):
     anchors = soup.find_all('a',class_="anchor",href=re.compile('#top'))
     refs = []
     for anchor in anchors:
-        refs.append(anchor.parent.parent.parent)
+        refs.append((anchor, anchor.parent.parent.parent))
     for ref in refs:
-        print ref.prettify()
+        print refs
 
 
 #http://www.phosphosite.org/siteAction.action?id=2886
