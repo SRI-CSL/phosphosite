@@ -205,7 +205,12 @@ def thirdLink(pid):
     for anchor in anchors:
         refs.append((anchor, anchor.parent.parent.parent))
     for ref in refs:
-        print refs
+        try:
+            print ref[0].text
+            print ref[1].find(href=re.compile("https://www.ncbi.nlm.nih.gov/")).text
+        except:
+            print ref[0].text
+            print ref[1]
 
 
 #http://www.phosphosite.org/siteAction.action?id=2886
