@@ -2,39 +2,61 @@
 
 import re
 import urllib2
+import sys
 
 #pip install beautifulsoup4
-from bs4 import BeautifulSoup
+import bs4
+
 
 
 proteins = [
-    'AKT1',
-    'APC',
-    'ATF1',
-    'ATR',
-    'BIM',
-    'BRAF',
-    'CHEK2',
-    'CREB1',
-    'FAK1',
-    'GATA3',
-    'HSPB1',
-    'IGFBP2',
-    'IRS1',
-    'JUN',
-    'MTOR',
-    'PDCD4',
-    'PLK1',
-    'PRAS40',
-    'RAF1',
-    'RASGRP1',
-    'SETD8',
-    'STAT1',
-    'STAT3',
-    'TP53BP1',
-    'TTK',
-    'YBX1',
+    "AKT1",
+    "APC",
+    "ATF1",
+    "ATR",
+    "BIM",
+    "BRAF",
+    "CHEK2",
+    "CREB1",
+    "FAK1",
+    "GATA3",
+    "HSPB1",
+    "IGFBP2",
+    "IRS1",
+    "JUN",
+    "MTOR",
+    "PDCD4",
+    "PLK1",
+    "PRAS40",
+    "RAF1",
+    "RASGRP1",
+    "SETD8",
+    "STAT1",
+    "STAT3",
+    "TP53BP1",
+    "TTK",
+    "YBX1",
 ]
+
+
+
+# we are going to build three databases.
+
+#this maps our protein name (string element of list above) to it's phosphosite id
+database_0 = {}
+
+#this maps the phosposite id to the set (as a list) of 'Sites implicated in'
+database_1 = {}
+
+
+#this maps the site implicated id to the 'controlled by' data.
+database_2 = {}
+
+
+def dump_database(database, name):
+    with open(name, "w") as dbf:
+        dbstr = repr(database)
+        dbf.write(dbstr.replace("'", '"'))
 
 
 url_1 = "http://www.phosphosite.org/simpleSearchSubmitAction.action?queryId=-1&from=0&searchStr={0}"
@@ -51,29 +73,30 @@ def firstLink(p):
     f =  urllib2.urlopen(url_1.format(p))
     html_doc = f.read()
 
-    soup = BeautifulSoup(html_doc, 'html.parser')
+    soup = bs4.BeautifulSoup(html_doc, 'html.parser')
 
     #print(soup.prettify())
 
     candidate = soup.find_all('a', class_='link13HoverRed')[0] #first element looks to be the one we want.
 
-
-    print candidate
+    sys.stderr.write('.')
 
     match = idPattern.search(str(candidate))
 
     if match:
         retval = match.group(1)
     else:
-        retval = None
+        retval = '-1'
 
-    return retval
+    return int(retval)
 
 # turn off, temporarily, while we have the data below.
 if False:
     for p in proteins:
-        print '# {0}\n{1},'.format(p, firstLink(p))
-
+        #print '# {0}\n{1},'.format(p, firstLink(p))
+        database_0[p] =  firstLink(p)
+    dump_database(database_0, "protein_ids.json")
+    sys.stderr.write('\n')
 #from which we deduce we get
 
 
@@ -140,7 +163,7 @@ def secondLink(pid, accumulator):
     f =  urllib2.urlopen(url_2.format(pid))
     html_doc = f.read()
 
-    soup = BeautifulSoup(html_doc, 'html.parser')
+    soup = bs4.BeautifulSoup(html_doc, 'html.parser')
 
     candidates =  soup.find_all('a', href=re.compile('siteAction'))
     for c in candidates:
@@ -151,27 +174,53 @@ def secondLink(pid, accumulator):
 
 #<a href="/../siteAction.action?id=2885">T308\u2011p</a>
 
-if False:
+if True:
     for pid in protein_ids:
+        sys.stderr.write('.')
         result = set()
         secondLink(pid, result)
-        print '\n# ', 10 * '-', pid, 10 * '-', '\n\n', result
+        database_1[pid] = list(result)
+        #print '\n# ', 10 * '-', pid, 10 * '-', '\n\n', result
+    dump_database(database_1, "sites_implicated.json")
+    sys.stderr.write('\n')
 
 
 
 url_3 = 'http://www.phosphosite.org/siteAction.action?id={0}'
 
+#http://www.phosphosite.org/siteAction.action?id=2886
 
-def processTds(tds, references):
+
+def processSpans(td, references, results, category):
+    hmap = {}
+    cval = None
+    for child in td.contents:
+        if isinstance(child, bs4.element.NavigableString):
+            continue
+        if child.name == 'span':
+            cval = []
+            hmap[str(child.text).replace(' (human)', '')] = cval
+        else:
+            cval.append(references[int(child.text)])
+    return hmap
+
+
+def processTds(tds, references, results):
     num = 0
+    category = ''
     while tds:
         num += 1
-        print
-        print 'td_{0}.text'.format(num), tds[0].text
+        #print 'td_{0}'.format(num), tds[0]
+        #print 'td_{0}.text'.format(num), tds[0].text
+        category = str(tds[0].text)
         num += 1
-        print 'td_{0}.spans.text'.format(num), [ str(x.text).replace(' (human)', '') for x in tds[1].find_all('span') ]
-        print 'td_{0}.anchors.text'.format(num), [ int(x.text) for x in tds[1].find_all('a') ]
-        print 'td_{0}.references'.format(num), [ references[int(x.text)] for x in tds[1].find_all('a') ]
+        #print 'td_{0}'.format(num), tds[1]
+        #print 'td_{0}.spans.text'.format(num), [ str(x.text).replace(' (human)', '') for x in tds[1].find_all('span') ]
+        #print 'td_{0}.anchors.text'.format(num), [ int(x.text) for x in tds[1].find_all('a') ]
+        #print 'td_{0}.references'.format(num), [ references[int(x.text)] for x in tds[1].find_all('a') ]
+        results[category] = processSpans(tds[1], references, results, category)
+        #results[category] = ([ str(x.text).replace(' (human)', '') for x in tds[1].find_all('span') ], [ references[int(x.text)] for x in tds[1].find_all('a') ])
+
         tds = tds[2:]
 
 
@@ -194,13 +243,17 @@ def getReferences(soup):
     return references
 
 
+fails = { }
 
 
-def thirdLink(pid):
+def thirdLink(pid, database_2, fails):
     f =  urllib2.urlopen(url_3.format(pid))
     html_doc = f.read()
 
-    soup = BeautifulSoup(html_doc, 'html.parser')
+    results = {}
+    database_2[pid] = results
+
+    soup = bs4.BeautifulSoup(html_doc, 'html.parser')
 
     #ok get the references too.
     references = getReferences(soup)
@@ -213,14 +266,28 @@ def thirdLink(pid):
         candidate = candidate.contents[1]
         candidate = candidate.contents[1]
         tds = candidate.find_all('td')
-        processTds(tds, references)
+        processTds(tds, references, results)
     else:
+        fails[pid] = True
         print 'Nope'
 
 
+if True:
+    for key in database_1:
+        for pid in database_1[key]:
+            if not pid in database_2 and pid not in fails:
+                sys.stderr.write('.')
+                thirdLink(pid, database_2, fails)
+    sys.stderr.write('\n')
+
+
 #http://www.phosphosite.org/siteAction.action?id=2886
-thirdLink(2886)
+#thirdLink(2886, database_2, fails)
 
 
 #for pid in ['8086746', '7817075', '8086742', '5665', '9231', '33182', '34498197', '58948825', '2226713', '3803', '34503491', '21567', '34503136', '31089431', '9908975', '2226532', '9229', '9228', '59789', '2945', '21546', '12723410', '5862772', '2882', '2886', '8086740', '31888028', '2885', '9230', '2888', '2889', '22075952', '4994', '34349789', '22075951', '28706801', '28706800', '46993', '33178', '5862776', '3189785', '3804', '3802', '22075955', '3805', '3227664', '22776840', '40216700', '8086730', '8086736', '8086734', '5663', '46992', '4675', '50772861', '9908969', '12723406', '25537905', '25537904', '25537903', '25537902', '9232', '9233', '17546661', '31089432', '5664', '14515800', '4261100', '4261103', '4261102', '29714', '15384324', '14515802', '22776834', '22776837', '5660', '3822706', '29711', '23080892', '22075954']:
 #    thirdLink(pid)
+
+
+#print database_2
+dump_database(database_2, "controlled_by.json")
