@@ -162,24 +162,38 @@ if False:
 url_3 = 'http://www.phosphosite.org/siteAction.action?id={0}'
 
 
-categories = [
-    'Regulatory protein',
-    'Putative in vivo kinases',
-    'Putative upstream phosphatases',
-    'Kinases',
-    'Phosphatases',
-    'Treatments',
-    ]
-
-
-def processTds(tds):
+def processTds(tds, references):
     num = 0
     while tds:
         num += 1
-        print 'td_{0}'.format(num), tds[0].text
+        print
+        print 'td_{0}.text'.format(num), tds[0].text
         num += 1
-        print 'td_{0}'.format(num), tds[1].find_all('a')
+        print 'td_{0}.spans.text'.format(num), [ str(x.text).replace(' (human)', '') for x in tds[1].find_all('span') ]
+        print 'td_{0}.anchors.text'.format(num), [ int(x.text) for x in tds[1].find_all('a') ]
+        print 'td_{0}.references'.format(num), [ references[int(x.text)] for x in tds[1].find_all('a') ]
         tds = tds[2:]
+
+
+def getReferences(soup):
+    references = {}
+    anchors = soup.find_all('a',class_="anchor",href=re.compile('#top'))
+    refs = []
+    for anchor in anchors:
+        refs.append((anchor, anchor.parent.parent.parent))
+    for ref in refs:
+        try:
+            #print ref[0].text
+            #print ref[1].find(href=re.compile("https://www.ncbi.nlm.nih.gov/")).text
+            references[int(ref[0].text)] = str(ref[1].find(href=re.compile("https://www.ncbi.nlm.nih.gov/")).text)
+        except:
+            #print ref[0].text
+            #print ref[1]
+            pass
+
+    return references
+
+
 
 
 def thirdLink(pid):
@@ -187,6 +201,9 @@ def thirdLink(pid):
     html_doc = f.read()
 
     soup = BeautifulSoup(html_doc, 'html.parser')
+
+    #ok get the references too.
+    references = getReferences(soup)
 
     candidate = soup.find_all('td', string=re.compile('Controlled by '))  #
     if candidate:
@@ -196,21 +213,9 @@ def thirdLink(pid):
         candidate = candidate.contents[1]
         candidate = candidate.contents[1]
         tds = candidate.find_all('td')
-        processTds(tds)
+        processTds(tds, references)
     else:
         print 'Nope'
-    #ok get the references too.
-    anchors = soup.find_all('a',class_="anchor",href=re.compile('#top'))
-    refs = []
-    for anchor in anchors:
-        refs.append((anchor, anchor.parent.parent.parent))
-    for ref in refs:
-        try:
-            print ref[0].text
-            print ref[1].find(href=re.compile("https://www.ncbi.nlm.nih.gov/")).text
-        except:
-            print ref[0].text
-            print ref[1]
 
 
 #http://www.phosphosite.org/siteAction.action?id=2886
