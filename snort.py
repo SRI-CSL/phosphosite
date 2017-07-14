@@ -179,7 +179,7 @@ if True:
         sys.stderr.write('.')
         result = set()
         secondLink(pid, result)
-        database_1[pid] = list(result)
+        database_1['{0}'.format(pid)] = list(result)
         #print '\n# ', 10 * '-', pid, 10 * '-', '\n\n', result
     dump_database(database_1, "sites_implicated.json")
     sys.stderr.write('\n')
@@ -278,7 +278,7 @@ def thirdLink(pid, database_2, fails):
         print 'Nope'
 
 
-if True:
+if False:
     for key in database_1:
         for pid in database_1[key]:
             if not pid in database_2:
