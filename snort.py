@@ -159,17 +159,18 @@ protein_ids = [
 #url_2 = 'http://www.phosphosite.org/proteinAction.action?id={0}&showAllSites=true'
 url_2 = 'http://www.phosphosite.org/proteinModificationSitesDomainsAction.action?id={0}&showAllSites=true'
 
-def secondLink(pid, accumulator):
-    f =  urllib2.urlopen(url_2.format(pid))
-    html_doc = f.read()
-
-    soup = bs4.BeautifulSoup(html_doc, 'html.parser')
-
-    candidates =  soup.find_all('a', href=re.compile('siteAction'))
-    for c in candidates:
-        match = idPattern.search(str(c))
-        if match:
-            accumulator.add(match.group(1))
+#deprecated
+#def secondLink(pid, accumulator):
+#    f =  urllib2.urlopen(url_2.format(pid))
+#    html_doc = f.read()
+#
+#    soup = bs4.BeautifulSoup(html_doc, 'html.parser')
+#
+#    candidates =  soup.find_all('a', href=re.compile('siteAction'))
+#    for c in candidates:
+#        match = idPattern.search(str(c))
+#        if match:
+#            accumulator.add(match.group(1))
 
 
 #<a href="/../siteAction.action?id=2885">T308\u2011p</a>
@@ -325,19 +326,36 @@ def thirdLink(pid, database_2, fails):
         fails[pid] = True
         print 'Nope'
 
+#deprecated
+#if False:
+#    for key in database_1:
+#        for pid in database_1[key]:
+#            if not pid in database_2:
+#                if pid not in fails:
+#                    sys.stderr.write('.')
+#                    thirdLink(pid, database_2, fails)
+#                else:
+#                    print 'Failure'
+#        sys.stderr.write('\n')
+#    #print database_2
+#    dump_database(database_2, "controlled_by.json")
 
-if False:
+
+if True:
+    all_site = set()
+    sys.stderr.write('on to database_2\n')
     for key in database_1:
-        for pid in database_1[key]:
-            if not pid in database_2:
+        d = database_1[key]
+        for skey in d:
+            for pid in d[skey]:
                 if pid not in fails:
                     sys.stderr.write('.')
                     thirdLink(pid, database_2, fails)
                 else:
                     print 'Failure'
         sys.stderr.write('\n')
-    #print database_2
     dump_database(database_2, "controlled_by.json")
+
 
 
 #http://www.phosphosite.org/siteAction.action?id=2886
