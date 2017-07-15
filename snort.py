@@ -174,7 +174,7 @@ def secondLink(pid, accumulator):
 
 #<a href="/../siteAction.action?id=2885">T308\u2011p</a>
 
-if True:
+if False:
     for pid in protein_ids:
         sys.stderr.write('.')
         result = set()
@@ -184,6 +184,54 @@ if True:
     dump_database(database_1, "sites_implicated.json")
     sys.stderr.write('\n')
 
+
+
+
+def processSecondLinkTds(tds, hmap):
+    for td in tds:
+        anchors = td.find_all('a')
+        if anchors:
+            key = td.text.encode('ascii', 'ignore').lstrip()
+            colon = key.find(":")
+            if colon != -1:
+                key = key[0:colon]
+            else:
+                key = key.rstrip()
+            results = []
+            hmap[key] = results
+            for a in anchors:
+                match = idPattern.search(str(a))
+                if match:
+                    results.append(match.group(1))
+    #print hmap
+
+
+def second2Link(pid, hmap):
+    f =  urllib2.urlopen(url_2.format(pid))
+    html_doc = f.read()
+
+    soup = bs4.BeautifulSoup(html_doc, 'html.parser')
+
+    target = soup.find_all('td', text='Sites Implicated In ')
+    if target:
+        target = target[0].parent.parent
+        target = target.contents[3].find_all('table')[0]
+        tds = target.find_all('td', attrs={"colspan": 3})
+        processSecondLinkTds(tds, hmap)
+
+#http://www.phosphosite.org/proteinAction.action?id=3867&showAllSites=true
+#hmap = {}
+#second2Link(3867, hmap)
+
+if True:
+    for pid in protein_ids:
+        sys.stderr.write('.')
+        result = {}
+        second2Link(pid, result)
+        database_1['{0}'.format(pid)] = result
+        #print '\n# ', 10 * '-', pid, 10 * '-', '\n\n', result
+    dump_database(database_1, "sites_implicated.json")
+    sys.stderr.write('\n')
 
 
 url_3 = 'http://www.phosphosite.org/siteAction.action?id={0}'
