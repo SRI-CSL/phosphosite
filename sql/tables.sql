@@ -1,18 +1,13 @@
 CREATE TABLE  protein (
     protein_id integer primary key autoincrement,
-    name text not null,
-    phosposite_id integer,
-    protein_status_id integer not null
-);
-
-
-CREATE TABLE protein_status (
-    protein_status_id integer primary key autoincrement,
+    phosphosite_id integer not null,
     name text not null
 );
 
+CREATE TABLE protein_fail (
+    name text not null
+);
 
-INSERT INTO protein_status ( name ) VALUES ( 'new' ), ( 'found' ), ( 'unknown' );
 
 CREATE TABLE site_name (
     site_name_id integer primary key autoincrement,
@@ -22,6 +17,15 @@ CREATE TABLE site_name (
 CREATE TABLE site_category (
     site_category_id integer primary key autoincrement,
     name text not null
+);
+
+
+CREATE TABLE site_success (
+    phosphosite_id integer not null
+);
+
+CREATE TABLE site_fail (
+    phosphosite_id integer not null
 );
 
 
@@ -40,7 +44,6 @@ CREATE TABLE control_name (
 
 
 CREATE TABLE control (
-    control_id integer primary key autoincrement,
     phosphosite_id integer not null,
     control_name_id integer not null,
     name text not null,

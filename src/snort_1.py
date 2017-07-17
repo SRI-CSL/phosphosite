@@ -14,6 +14,8 @@ import sqlite3
 url_1 = "http://www.phosphosite.org/simpleSearchSubmitAction.action?queryId=-1&from=0&searchStr={0}"
 
 
+idPattern = re.compile('id=(\d*)')
+
 
 protein_list = [
     "AKT1",
@@ -44,6 +46,7 @@ protein_list = [
     "YBX1",
 ]
 
+#'http://www.phosphosite.org/simpleSearchSubmitAction.action?queryId=-1&from=0&searchStr="AKT1"'
 
 conn = sqlite3.connect('../db/phosphosite.sqlite')
 
@@ -53,24 +56,26 @@ def get_protein_id(conn, name):
     cursor = conn.cursor()
 
     #step one: see if it is already in the protein table
-    select_query = 'SELECT (name, phosphosite_id, protein_status_id) FROM protein WHERE name = ?'
-    cursor.execute(select_query, name)
+    cursor.execute('SELECT name, phosphosite_id FROM protein WHERE name=?', [name])
     answer = cursor.fetchone()
     if answer is not None:
-        (name, pid, status) = answer
-        if status is 1:  #found
-            return pid
-        if status is 2:  #unknown
+        (name, pid) = answer
+        return pid
+    else:
+        #need to check the fail table
+        cursor.execute('SELECT * FROM protein_fail WHERE name=?', [name])
+        if cursor.fetchone() is not None:
             return -1
-
-        # status must be 0 (i.e. new)
 
     #step two: see if we can find it from the phosphosite site (if necessary)
     pid = -1
-    f =  urllib2.urlopen(url_1.format(p))
+    url = url_1.format(name)
+    f =  urllib2.urlopen(url)
     html_doc = f.read()
     soup = bs4.BeautifulSoup(html_doc, 'html.parser')
-    candidate = soup.find_all('a', class_='link13HoverRed')[0] #first element looks to be the one we want.
+    candidate = soup.find_all('a', class_='link13HoverRed')
+    if candidate:
+        candidate = candidate[0] #first element looks to be the one we want.
     sys.stderr.write('.')
     match = idPattern.search(str(candidate))
     if match:
@@ -78,11 +83,11 @@ def get_protein_id(conn, name):
 
 
     #step three: update the table to reflect the status
-    insert_query = 'INSERT OR REPLACE INTO protein (name, phosphosite_id, protein_status_id) VALUES (?, ?, ?)'
+    insert_query = 'INSERT INTO protein (name, phosphosite_id) VALUES(?)'
     if pid != -1:
-        cursor.execute(insert_query, name, pid, 1)
+        cursor.execute('INSERT INTO protein (name, phosphosite_id) VALUES(?, ?)', (name, pid))
     else:
-        cursor.execute(insert_query, name, pid, 0)
+        cursor.execute('INSERT INTO protein_fail (name) VALUES(?)', (name))
 
     conn.commit()
 
@@ -97,6 +102,7 @@ def process_protein(conn, name):
 
 
 for protein in protein_list:
+    print 'name = {0}'.format(protein)
     process_protein(conn, protein)
 
 

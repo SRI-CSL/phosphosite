@@ -64,7 +64,6 @@ def dump_database(database, name):
         dbstr = repr(database)
         dbf.write(dbstr.replace("'", '"'))
 
-
 url_1 = "http://www.phosphosite.org/simpleSearchSubmitAction.action?queryId=-1&from=0&searchStr={0}"
 
 
@@ -96,14 +95,14 @@ def firstLink(p):
 
     return int(retval)
 
-    # turn off, temporarily, while we have the data below.
-    if False:
-        for p in proteins:
-            #print '# {0}\n{1},'.format(p, firstLink(p))
-            database_0[p] =  firstLink(p)
-            dump_database(database_0, "protein_ids.json")
-                        sys.stderr.write('\n')
-                        #from which we deduce we get
+# turn off, temporarily, while we have the data below.
+if False:
+    for p in proteins:
+        #print '# {0}\n{1},'.format(p, firstLink(p))
+        database_0[p] =  firstLink(p)
+        dump_database(database_0, "protein_ids.json")
+        sys.stderr.write('\n')
+        #from which we deduce we get
 
 
 protein_ids = [
