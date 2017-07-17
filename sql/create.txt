@@ -1,5 +1,5 @@
 0. If starting afresh. First create the db:
 
-> sqlite3 ../db/phosposite.sqlite
+> sqlite3 ../db/phosphosite.sqlite
 
 sqlite> .read tables.sql
