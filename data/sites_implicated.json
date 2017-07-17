@@ -1,291 +1,1205 @@
 {
 	"989": {
-		"apoptosis, inhibited": ["3623", "3624", "3625"],
-		"apoptosis, altered": ["3623", "3624", "3625"],
-		"molecular association, regulation": ["3623", "3624", "3625"],
-		"intracellular localization": ["3624", "3625"],
-		"protein degradation": ["3623", "3624", "3625"],
-		"phosphorylation": ["3623", "3624", "3625"],
-		"activity, induced": ["3624", "3625"],
-		"protein conformation": ["3623", "3624", "3625"],
-		"transcription, altered": ["3623", "3624", "3625"],
-		"cytoskeletal reorganization": ["3623", "3624", "3625"],
-		"cell growth, altered": ["3623", "3624", "3625"],
-		"ubiquitination": ["3624", "3625"],
-		"sumoylation": ["3623", "3624", "3625"],
-		"cell cycle regulation": ["3624"]
+		"apoptosis, inhibited": {
+			"S78p": "3624",
+			"S15p": "3623",
+			"S82p": "3625"
+		},
+		"apoptosis, altered": {
+			"S78p": "3624",
+			"S15p": "3623",
+			"S82p": "3625"
+		},
+		"molecular association, regulation": {
+			"S78p": "3624",
+			"S15p": "3623",
+			"S82p": "3625"
+		},
+		"intracellular localization": {
+			"S78p": "3624",
+			"S82p": "3625"
+		},
+		"protein degradation": {
+			"S78p": "3624",
+			"S15p": "3623",
+			"S82p": "3625"
+		},
+		"phosphorylation": {
+			"S78p": "3624",
+			"S15p": "3623",
+			"S82p": "3625"
+		},
+		"activity, induced": {
+			"S78p": "3624",
+			"S82p": "3625"
+		},
+		"protein conformation": {
+			"S78p": "3624",
+			"S15p": "3623",
+			"S82p": "3625"
+		},
+		"transcription, altered": {
+			"S78p": "3624",
+			"S15p": "3623",
+			"S82p": "3625"
+		},
+		"cytoskeletal reorganization": {
+			"S78p": "3624",
+			"S15p": "3623",
+			"S82p": "3625"
+		},
+		"cell growth, altered": {
+			"S78p": "3624",
+			"S15p": "3623",
+			"S82p": "3625"
+		},
+		"ubiquitination": {
+			"S78p": "3624",
+			"S82p": "3625"
+		},
+		"sumoylation": {
+			"S78p": "3624",
+			"S15p": "3623",
+			"S82p": "3625"
+		},
+		"cell cycle regulation": {
+			"S78p": "3624"
+		}
 	},
 	"598": {
-		"apoptosis, inhibited": ["3031", "3036"],
-		"intracellular localization": ["3031", "3033", "3035", "3036"],
-		"protein degradation": ["3031"],
-		"apoptosis, altered": ["3031", "3035"],
-		"carcinogenesis, induced": ["3031", "3035"],
-		"protein conformation": ["18122700", "60179202"],
-		"cell motility, altered": ["18122700", "3031", "3032", "9924", "3036"],
-		"endocytosis, altered": ["3031"],
-		"phosphorylation": ["18122700", "3031", "3033", "3034", "3035", "3036"],
-		"cell adhesion, altered": ["3031", "3032", "3033", "3034", "9924", "3035", "3030", "3036"],
-		"molecular association, regulation": ["3031", "3035", "3036"],
-		"activity, induced": ["3033", "3035"],
-		"enzymatic activity, inhibited": ["60179202"],
-		"cell differentiation, altered": ["3031", "3033", "3034", "3036"],
-		"transcription, altered": ["3031", "3033", "3034", "3036"],
-		"enzymatic activity, induced": ["18122700", "3031", "3032", "3033", "3034"],
-		"cytoskeletal reorganization": ["3031", "3032", "3033", "3034", "3029", "3035", "3030", "3036"],
-		"cell growth, altered": ["18122700", "3031", "3035", "3030"],
-		"cell motility, induced": ["3031", "3033", "3034", "25291279", "89458", "3035", "3036"],
-		"cell adhesion, induced": ["3031"]
+		"apoptosis, inhibited": {
+			"Y397p": "3031",
+			"Y925p": "3036"
+		},
+		"intracellular localization": {
+			"Y397p": "3031",
+			"Y925p": "3036",
+			"Y576p": "3033",
+			"Y861p": "3035"
+		},
+		"protein degradation": {
+			"Y397p": "3031"
+		},
+		"apoptosis, altered": {
+			"Y397p": "3031",
+			"Y861p": "3035"
+		},
+		"carcinogenesis, induced": {
+			"Y397p": "3031",
+			"Y861p": "3035"
+		},
+		"protein conformation": {
+			"T474p": "60179202",
+			"Y194p": "18122700"
+		},
+		"cell motility, altered": {
+			"Y925p": "3036",
+			"Y397p": "3031",
+			"S732p": "9924",
+			"Y407p": "3032",
+			"Y194p": "18122700"
+		},
+		"endocytosis, altered": {
+			"Y397p": "3031"
+		},
+		"phosphorylation": {
+			"Y861p": "3035",
+			"Y194p": "18122700",
+			"Y576p": "3033",
+			"Y397p": "3031",
+			"Y925p": "3036",
+			"Y577p": "3034"
+		},
+		"cell adhesion, altered": {
+			"Y861p": "3035",
+			"Y407p": "3032",
+			"Y576p": "3033",
+			"Y925p": "3036",
+			"Y397p": "3031",
+			"S910p": "3030",
+			"S732p": "9924",
+			"Y577p": "3034"
+		},
+		"molecular association, regulation": {
+			"Y397p": "3031",
+			"Y925p": "3036",
+			"Y861p": "3035"
+		},
+		"activity, induced": {
+			"Y861p": "3035",
+			"Y576p": "3033"
+		},
+		"enzymatic activity, inhibited": {
+			"T474p": "60179202"
+		},
+		"cell differentiation, altered": {
+			"Y925p": "3036",
+			"Y397p": "3031",
+			"Y577p": "3034",
+			"Y576p": "3033"
+		},
+		"transcription, altered": {
+			"Y925p": "3036",
+			"Y397p": "3031",
+			"Y577p": "3034",
+			"Y576p": "3033"
+		},
+		"enzymatic activity, induced": {
+			"Y397p": "3031",
+			"Y576p": "3033",
+			"Y407p": "3032",
+			"Y194p": "18122700",
+			"Y577p": "3034"
+		},
+		"cytoskeletal reorganization": {
+			"Y861p": "3035",
+			"Y407p": "3032",
+			"Y576p": "3033",
+			"S843p": "3029",
+			"Y397p": "3031",
+			"S910p": "3030",
+			"Y925p": "3036",
+			"Y577p": "3034"
+		},
+		"cell growth, altered": {
+			"Y397p": "3031",
+			"S910p": "3030",
+			"Y194p": "18122700",
+			"Y861p": "3035"
+		},
+		"cell motility, induced": {
+			"Y861p": "3035",
+			"Y577p": "3034",
+			"Y576p": "3033",
+			"S695p": "25291279",
+			"Y397p": "3031",
+			"T700p": "89458",
+			"Y925p": "3036"
+		},
+		"cell adhesion, induced": {
+			"Y397p": "3031"
+		}
 	},
 	"570": {
-		"apoptosis, altered": ["2885", "2882"],
-		"molecular association, regulation": ["22776840", "2885", "2886", "2882"],
-		"transcription, induced": ["9231"],
-		"cell differentiation, altered": ["2886", "2882"],
-		"activity, induced": ["58948825", "2885", "2886", "2882"],
-		"cell motility, induced": ["2882"],
-		"cell cycle regulation": ["14515802", "2885", "2882"],
-		"apoptosis, inhibited": ["33178", "9231", "33182", "2885", "2882"],
-		"carcinogenesis, induced": ["2885", "2882"],
-		"cell growth, induced": ["58948825", "2885", "2882"],
-		"protein conformation": ["2885", "2886"],
-		"enzymatic activity, inhibited": ["25537902", "25537903", "2886"],
-		"transcription, altered": ["14515802", "2885", "4994", "2886", "2882"],
-		"cytoskeletal reorganization": ["2885", "2882"],
-		"protein stabilization": ["22776840", "2886"],
-		"carcinogenesis, altered": ["2882"],
-		"translation, altered": ["2886"],
-		"cell motility, altered": ["2885", "2882"],
-		"protein degradation": ["2882"],
-		"ubiquitination": ["2886"],
-		"enzymatic activity, induced": ["12723410", "12723406", "33178", "9228", "9231", "14515802", "33182", "2885", "4994", "2888", "2886", "2882", "2889"],
-		"intracellular localization": ["12723410", "58948825", "12723406", "14515802", "2885", "2882"],
-		"phosphorylation": ["12723410", "58948825", "12723406", "22776840", "25537902", "2885", "25537903", "2886", "2882"],
-		"apoptosis, induced": ["2886"],
-		"cell growth, altered": ["2885", "2882"]
+		"apoptosis, altered": {
+			"T308p": "2885",
+			"S473p": "2882"
+		},
+		"molecular association, regulation": {
+			"T308p": "2885",
+			"T450p": "2886",
+			"T92p": "22776840",
+			"S473p": "2882"
+		},
+		"transcription, induced": {
+			"S129p": "9231"
+		},
+		"cell differentiation, altered": {
+			"T450p": "2886",
+			"S473p": "2882"
+		},
+		"activity, induced": {
+			"T308p": "2885",
+			"T450p": "2886",
+			"S473p": "2882",
+			"K14m1": "58948825"
+		},
+		"cell motility, induced": {
+			"S473p": "2882"
+		},
+		"cell cycle regulation": {
+			"T308p": "2885",
+			"Y176p": "14515802",
+			"S473p": "2882"
+		},
+		"apoptosis, inhibited": {
+			"S129p": "9231",
+			"T308p": "2885",
+			"S473p": "2882",
+			"T72p": "33178",
+			"S246p": "33182"
+		},
+		"carcinogenesis, induced": {
+			"T308p": "2885",
+			"S473p": "2882"
+		},
+		"cell growth, induced": {
+			"T308p": "2885",
+			"S473p": "2882",
+			"K14m1": "58948825"
+		},
+		"protein conformation": {
+			"T308p": "2885",
+			"T450p": "2886"
+		},
+		"enzymatic activity, inhibited": {
+			"T450p": "2886",
+			"T305gl": "25537902",
+			"T312gl": "25537903"
+		},
+		"transcription, altered": {
+			"T308p": "2885",
+			"T450p": "2886",
+			"Y176p": "14515802",
+			"S473p": "2882",
+			"Y315p": "4994"
+		},
+		"cytoskeletal reorganization": {
+			"T308p": "2885",
+			"S473p": "2882"
+		},
+		"protein stabilization": {
+			"T450p": "2886",
+			"T92p": "22776840"
+		},
+		"carcinogenesis, altered": {
+			"S473p": "2882"
+		},
+		"translation, altered": {
+			"T450p": "2886"
+		},
+		"cell motility, altered": {
+			"T308p": "2885",
+			"S473p": "2882"
+		},
+		"protein degradation": {
+			"S473p": "2882"
+		},
+		"ubiquitination": {
+			"T450p": "2886"
+		},
+		"enzymatic activity, induced": {
+			"S129p": "9231",
+			"Y176p": "14515802",
+			"Y474p": "2889",
+			"S473p": "2882",
+			"S124p": "9228",
+			"K14ub": "12723406",
+			"T72p": "33178",
+			"S246p": "33182",
+			"Y315p": "4994",
+			"T450p": "2886",
+			"T308p": "2885",
+			"K8ub": "12723410",
+			"Y326p": "2888"
+		},
+		"intracellular localization": {
+			"Y176p": "14515802",
+			"S473p": "2882",
+			"K14ub": "12723406",
+			"K14m1": "58948825",
+			"T308p": "2885",
+			"K8ub": "12723410"
+		},
+		"phosphorylation": {
+			"T92p": "22776840",
+			"T305gl": "25537902",
+			"K14ub": "12723406",
+			"T450p": "2886",
+			"T312gl": "25537903",
+			"K14m1": "58948825",
+			"T308p": "2885",
+			"S473p": "2882",
+			"K8ub": "12723410"
+		},
+		"apoptosis, induced": {
+			"T450p": "2886"
+		},
+		"cell growth, altered": {
+			"T308p": "2885",
+			"S473p": "2882"
+		}
 	},
 	"3867": {
-		"phosphorylation": ["999518", "15231", "15235", "999521"],
-		"intracellular localization": ["18360", "18361"],
-		"transcription, altered": ["9650", "9649"],
-		"molecular association, regulation": ["9650", "15231", "15235", "2897306", "10211200"],
-		"cell cycle regulation": ["3188802"]
+		"phosphorylation": {
+			"S1507p": "15235",
+			"S1510p": "999521",
+			"S1501p": "999518",
+			"S1505p": "15231"
+		},
+		"intracellular localization": {
+			"S2034p": "18360",
+			"S2054p": "18361"
+		},
+		"transcription, altered": {
+			"S1279p": "9650",
+			"S1392p": "9649"
+		},
+		"molecular association, regulation": {
+			"S1279p": "9650",
+			"S1507p": "15235",
+			"S2789p": "2897306",
+			"S1505p": "15231",
+			"S2793p": "10211200"
+		},
+		"cell cycle regulation": {
+			"S1360p": "3188802"
+		}
 	},
 	"576": {
-		"cell growth, altered": ["23451"],
-		"molecular association, regulation": ["23451", "72378", "2226547"],
-		"enzymatic activity, induced": ["23451", "2226547"]
+		"cell growth, altered": {
+			"S428p": "23451"
+		},
+		"molecular association, regulation": {
+			"S428p": "23451",
+			"T1989p": "2226547",
+			"S435p": "72378"
+		},
+		"enzymatic activity, induced": {
+			"S428p": "23451",
+			"T1989p": "2226547"
+		}
 	},
 	"779": {
-		"carcinogenesis, induced": ["1737503"],
-		"enzymatic activity, induced": ["4145459", "94635", "94636", "4145455", "30952"],
-		"intracellular localization": ["13194805", "13194801", "6370217", "46615"],
-		"molecular association, regulation": ["57497", "57499", "94635"],
-		"enzymatic activity, inhibited": ["94634", "4145460"],
-		"cytoskeletal reorganization": ["1737503", "950100"],
-		"protein stabilization": ["1737503", "6370217", "57497", "57499", "30952"],
-		"ubiquitination": ["1737503"],
-		"cell cycle regulation": ["6370217", "94635", "94636"]
+		"carcinogenesis, induced": {
+			"S281p": "1737503"
+		},
+		"enzymatic activity, induced": {
+			"T686p": "94636",
+			"T676p": "94635",
+			"S742p": "4145455",
+			"Y811p": "30952",
+			"S582p": "4145459"
+		},
+		"intracellular localization": {
+			"S821p": "46615",
+			"T12p": "13194805",
+			"S15p": "13194801",
+			"T288p": "6370217"
+		},
+		"molecular association, regulation": {
+			"T453p": "57497",
+			"T676p": "94635",
+			"T468p": "57499"
+		},
+		"enzymatic activity, inhibited": {
+			"T806p": "4145460",
+			"T675p": "94634"
+		},
+		"cytoskeletal reorganization": {
+			"S281p": "1737503",
+			"S436p": "950100"
+		},
+		"protein stabilization": {
+			"T453p": "57497",
+			"S281p": "1737503",
+			"T468p": "57499",
+			"Y811p": "30952",
+			"T288p": "6370217"
+		},
+		"ubiquitination": {
+			"S281p": "1737503"
+		},
+		"cell cycle regulation": {
+			"T686p": "94636",
+			"T676p": "94635",
+			"T288p": "6370217"
+		}
 	},
 	"1489": {
-		"cell differentiation, induced": ["4015"],
-		"activity, inhibited": ["25168", "14007", "14010"],
-		"apoptosis, inhibited": ["4015"],
-		"molecular association, regulation": ["14006", "14007", "14008", "14010", "9514", "4015", "30474", "3181029", "14159740"],
-		"cell motility, altered": ["4015"],
-		"cell growth, induced": ["9514", "4015"],
-		"transcription, inhibited": ["25168", "14007", "14010"],
-		"phosphorylation": ["25168", "14006", "14007", "14008", "14009", "4015"],
-		"cell differentiation, altered": ["4015"],
-		"transcription, altered": ["4015"],
-		"activity, induced": ["4015"],
-		"transcription, induced": ["9514", "4015", "30474", "14159740"],
-		"translation, inhibited": ["4015"]
+		"cell differentiation, induced": {
+			"S133p": "4015"
+		},
+		"activity, inhibited": {
+			"S121p": "14010",
+			"T100p": "25168",
+			"S111p": "14007"
+		},
+		"apoptosis, inhibited": {
+			"S133p": "4015"
+		},
+		"molecular association, regulation": {
+			"S129p": "9514",
+			"S133p": "4015",
+			"K136ac": "30474",
+			"S111p": "14007",
+			"S271p": "14159740",
+			"S121p": "14010",
+			"S270p": "3181029",
+			"S108p": "14006",
+			"S114p": "14008"
+		},
+		"cell motility, altered": {
+			"S133p": "4015"
+		},
+		"cell growth, induced": {
+			"S129p": "9514",
+			"S133p": "4015"
+		},
+		"transcription, inhibited": {
+			"S121p": "14010",
+			"T100p": "25168",
+			"S111p": "14007"
+		},
+		"phosphorylation": {
+			"S133p": "4015",
+			"T100p": "25168",
+			"S111p": "14007",
+			"S117p": "14009",
+			"S108p": "14006",
+			"S114p": "14008"
+		},
+		"cell differentiation, altered": {
+			"S133p": "4015"
+		},
+		"transcription, altered": {
+			"S133p": "4015"
+		},
+		"activity, induced": {
+			"S133p": "4015"
+		},
+		"transcription, induced": {
+			"S129p": "9514",
+			"K136ac": "30474",
+			"S133p": "4015",
+			"S271p": "14159740"
+		},
+		"translation, inhibited": {
+			"S133p": "4015"
+		}
 	},
 	"7977": {
-		"transcription, inhibited": ["56834402"],
-		"molecular association, regulation": ["56834402"],
-		"transcription, induced": ["23687"],
-		"protein degradation": ["33637903"],
-		"activity, induced": ["23687"],
-		"ubiquitination": ["33637903"]
+		"transcription, inhibited": {
+			"R261m2": "56834402"
+		},
+		"molecular association, regulation": {
+			"R261m2": "56834402"
+		},
+		"transcription, induced": {
+			"S308p": "23687"
+		},
+		"protein degradation": {
+			"T156p": "33637903"
+		},
+		"activity, induced": {
+			"S308p": "23687"
+		},
+		"ubiquitination": {
+			"T156p": "33637903"
+		}
 	},
 	"1050": {
-		"activity, inhibited": ["3350"],
-		"apoptosis, inhibited": ["3352"],
-		"intracellular localization": ["3352", "3350"],
-		"protein degradation": ["3352"],
-		"apoptosis, altered": ["3350"],
-		"carcinogenesis, induced": ["3350"],
-		"cell motility, altered": ["3352", "3350"],
-		"cell growth, induced": ["3352"],
-		"transcription, inhibited": ["3352"],
-		"cell adhesion, altered": ["3352"],
-		"molecular association, regulation": ["3352", "3350"],
-		"activity, induced": ["3352", "3350"],
-		"cell differentiation, altered": ["3352", "3350"],
-		"transcription, altered": ["3352", "3350"],
-		"phosphorylation": ["3352"],
-		"cell growth, altered": ["3352", "3350"],
-		"transcription, induced": ["40439704", "30006", "3352", "3190178", "3350"]
+		"activity, inhibited": {
+			"S727p": "3350"
+		},
+		"apoptosis, inhibited": {
+			"Y705p": "3352"
+		},
+		"intracellular localization": {
+			"S727p": "3350",
+			"Y705p": "3352"
+		},
+		"protein degradation": {
+			"Y705p": "3352"
+		},
+		"apoptosis, altered": {
+			"S727p": "3350"
+		},
+		"carcinogenesis, induced": {
+			"S727p": "3350"
+		},
+		"cell motility, altered": {
+			"S727p": "3350",
+			"Y705p": "3352"
+		},
+		"cell growth, induced": {
+			"Y705p": "3352"
+		},
+		"transcription, inhibited": {
+			"Y705p": "3352"
+		},
+		"cell adhesion, altered": {
+			"Y705p": "3352"
+		},
+		"molecular association, regulation": {
+			"S727p": "3350",
+			"Y705p": "3352"
+		},
+		"activity, induced": {
+			"S727p": "3350",
+			"Y705p": "3352"
+		},
+		"cell differentiation, altered": {
+			"S727p": "3350",
+			"Y705p": "3352"
+		},
+		"transcription, altered": {
+			"S727p": "3350",
+			"Y705p": "3352"
+		},
+		"phosphorylation": {
+			"Y705p": "3352"
+		},
+		"cell growth, altered": {
+			"S727p": "3350",
+			"Y705p": "3352"
+		},
+		"transcription, induced": {
+			"K685ac": "30006",
+			"T714p": "3190178",
+			"K49m2": "40439704",
+			"S727p": "3350",
+			"Y705p": "3352"
+		}
 	},
 	"855": {
-		"activity, inhibited": ["1455", "17118", "22869"],
-		"protein degradation": ["1451", "17118"],
-		"apoptosis, altered": ["1451"],
-		"molecular association, regulation": ["21837", "1459", "9903", "1451", "1446", "73490", "1458", "1448", "1447"],
-		"intracellular localization": ["9903", "1451", "1454", "1455", "5198", "1045"],
-		"phosphorylation": ["9903", "12854", "1447"],
-		"apoptosis, induced": ["1448"],
-		"cell growth, altered": ["1448"],
-		"cell cycle regulation": ["1447"]
+		"activity, inhibited": {
+			"S616p": "1455",
+			"S1223p": "22869",
+			"S1101p": "17118"
+		},
+		"protein degradation": {
+			"S312p": "1451",
+			"S1101p": "17118"
+		},
+		"apoptosis, altered": {
+			"S312p": "1451"
+		},
+		"molecular association, regulation": {
+			"S307p": "9903",
+			"S270p": "1459",
+			"S312p": "1451",
+			"S24p": "21837",
+			"Y632p": "1458",
+			"S794p": "1448",
+			"Y612p": "1446",
+			"Y896p": "1447",
+			"S629p": "73490"
+		},
+		"intracellular localization": {
+			"S307p": "9903",
+			"S312p": "1451",
+			"S527p": "1454",
+			"S636p": "5198",
+			"S616p": "1455",
+			"S639p": "1045"
+		},
+		"phosphorylation": {
+			"S323p": "12854",
+			"S307p": "9903",
+			"Y896p": "1447"
+		},
+		"apoptosis, induced": {
+			"S794p": "1448"
+		},
+		"cell growth, altered": {
+			"S794p": "1448"
+		},
+		"cell cycle regulation": {
+			"Y896p": "1447"
+		}
 	},
 	"3129": {
-		"DNA repair, inhibited": ["3194895"],
-		"intracellular localization": ["3194895"],
-		"apoptosis, altered": ["9713", "28421"],
-		"molecular association, regulation": ["2344745", "2344743", "2344744", "2344741", "2344742"],
-		"cell cycle regulation": ["81420"]
+		"DNA repair, inhibited": {
+			"S1618p": "3194895"
+		},
+		"intracellular localization": {
+			"S1618p": "3194895"
+		},
+		"apoptosis, altered": {
+			"S25p": "9713",
+			"S1778p": "28421"
+		},
+		"molecular association, regulation": {
+			"R1398me": "2344743",
+			"R1400me": "2344744",
+			"R1396me": "2344745",
+			"R1403me": "2344742",
+			"R1401me": "2344741"
+		},
+		"cell cycle regulation": {
+			"S1219p": "81420"
+		}
 	},
 	"4192": {
-		"protein degradation": ["28821", "1211015", "2588200"],
-		"cell growth, induced": ["2588200", "28823"],
-		"molecular association, regulation": ["28821", "1211015", "2588200"],
-		"translation, altered": ["28821", "1211015"],
-		"intracellular localization": ["28823"],
-		"cell growth, altered": ["28821", "1211015"],
-		"cell motility, induced": ["2588200", "28823"],
-		"cell cycle regulation": ["28821", "1211015"]
+		"protein degradation": {
+			"S76p": "2588200",
+			"S67p": "28821",
+			"S71p": "1211015"
+		},
+		"cell growth, induced": {
+			"S76p": "2588200",
+			"S457p": "28823"
+		},
+		"molecular association, regulation": {
+			"S76p": "2588200",
+			"S67p": "28821",
+			"S71p": "1211015"
+		},
+		"translation, altered": {
+			"S67p": "28821",
+			"S71p": "1211015"
+		},
+		"intracellular localization": {
+			"S457p": "28823"
+		},
+		"cell growth, altered": {
+			"S67p": "28821",
+			"S71p": "1211015"
+		},
+		"cell motility, induced": {
+			"S76p": "2588200",
+			"S457p": "28823"
+		},
+		"cell cycle regulation": {
+			"S67p": "28821",
+			"S71p": "1211015"
+		}
 	},
 	"653": {
-		"carcinogenesis, induced": ["2742"],
-		"enzymatic activity, induced": ["2748", "21073", "20740", "20742", "2742", "2743", "2750", "2751", "24397", "1811300", "2749", "2745", "3082224", "10128", "5822318", "2746"],
-		"intracellular localization": ["21069", "2744", "2741", "21073", "20740", "20742", "2742", "2743", "2751", "21065"],
-		"protein conformation": ["2742", "2746"],
-		"molecular association, regulation": ["21069", "2744", "5081", "2741", "21073", "20740", "20742", "2742", "2743", "2750", "24397", "2746", "21065"],
-		"enzymatic activity, inhibited": ["21069", "2744", "2741", "21073", "20740", "20742", "2750", "2751", "2746", "21065"],
-		"phosphorylation": ["2741", "2750", "2751", "10128", "2746"],
-		"cell growth, altered": ["2741", "2746"],
-		"cell cycle regulation": ["2742"]
+		"carcinogenesis, induced": {
+			"S338p": "2742"
+		},
+		"enzymatic activity, induced": {
+			"S289p": "21073",
+			"S301p": "20742",
+			"T481p": "1811300",
+			"S338p": "2742",
+			"S619p": "5822318",
+			"S497p": "3082224",
+			"S339p": "2743",
+			"S621p": "2746",
+			"T269p": "2748",
+			"T491p": "2749",
+			"S471p": "24397",
+			"Y340p": "2750",
+			"Y341p": "2751",
+			"S296p": "20740",
+			"S499p": "10128",
+			"S494p": "2745"
+		},
+		"intracellular localization": {
+			"S289p": "21073",
+			"S301p": "20742",
+			"S43p": "2744",
+			"S296p": "20740",
+			"S338p": "2742",
+			"S259p": "2741",
+			"S339p": "2743",
+			"S29p": "21069",
+			"Y341p": "2751",
+			"S642p": "21065"
+		},
+		"protein conformation": {
+			"S338p": "2742",
+			"S621p": "2746"
+		},
+		"molecular association, regulation": {
+			"S289p": "21073",
+			"S301p": "20742",
+			"S621p": "2746",
+			"S43p": "2744",
+			"S296p": "20740",
+			"S338p": "2742",
+			"S471p": "24397",
+			"Y340p": "2750",
+			"S233p": "5081",
+			"S339p": "2743",
+			"S29p": "21069",
+			"S259p": "2741",
+			"S642p": "21065"
+		},
+		"enzymatic activity, inhibited": {
+			"S289p": "21073",
+			"S301p": "20742",
+			"S43p": "2744",
+			"S296p": "20740",
+			"S621p": "2746",
+			"Y340p": "2750",
+			"S259p": "2741",
+			"S29p": "21069",
+			"Y341p": "2751",
+			"S642p": "21065"
+		},
+		"phosphorylation": {
+			"Y340p": "2750",
+			"S259p": "2741",
+			"S499p": "10128",
+			"Y341p": "2751",
+			"S621p": "2746"
+		},
+		"cell growth, altered": {
+			"S621p": "2746",
+			"S259p": "2741"
+		},
+		"cell cycle regulation": {
+			"S338p": "2742"
+		}
 	},
 	"468": {
-		"protein degradation": ["981312"],
-		"molecular association, regulation": ["1378", "1381", "1382", "957", "2251602"],
-		"enzymatic activity, induced": ["1378", "1379", "1380", "1381", "1382", "957", "2251602", "6339703", "981303", "1377", "1384", "17534805", "5812"],
-		"protein conformation": ["957", "6339703", "1377", "1384"],
-		"intracellular localization": ["957", "17534802", "981306", "981303", "1377", "1384", "981300", "17534805"],
-		"enzymatic activity, inhibited": ["12472902", "12472901", "12472900"],
-		"phosphorylation": ["1379", "1380", "957", "2251602", "981300"],
-		"apoptosis, induced": ["957", "981303", "981312"],
-		"cytoskeletal reorganization": ["957"],
-		"ubiquitination": ["981303", "1377", "981312"],
-		"cell cycle regulation": ["1378", "1381", "1382", "957", "2251602", "12472902", "12472901", "12472900", "1384"]
+		"protein degradation": {
+			"S456p": "981312"
+		},
+		"molecular association, regulation": {
+			"S33p": "1381",
+			"S73p": "2251602",
+			"S35p": "1382",
+			"T68p": "957",
+			"S19p": "1378"
+		},
+		"enzymatic activity, induced": {
+			"T26p": "1379",
+			"T68p": "957",
+			"S140p": "6339703",
+			"T387p": "1384",
+			"S516p": "5812",
+			"T383p": "1377",
+			"S33p": "1381",
+			"S35p": "1382",
+			"S19p": "1378",
+			"S379p": "981303",
+			"S73p": "2251602",
+			"Y390p": "17534805",
+			"S28p": "1380"
+		},
+		"protein conformation": {
+			"S140p": "6339703",
+			"T387p": "1384",
+			"T68p": "957",
+			"T383p": "1377"
+		},
+		"intracellular localization": {
+			"T68p": "957",
+			"T389p": "981300",
+			"T387p": "1384",
+			"S372p": "17534802",
+			"T383p": "1377",
+			"S379p": "981303",
+			"T378p": "981306",
+			"Y390p": "17534805"
+		},
+		"enzymatic activity, inhibited": {
+			"T205p": "12472901",
+			"S210p": "12472900",
+			"S164p": "12472902"
+		},
+		"phosphorylation": {
+			"T26p": "1379",
+			"T389p": "981300",
+			"S73p": "2251602",
+			"T68p": "957",
+			"S28p": "1380"
+		},
+		"apoptosis, induced": {
+			"S379p": "981303",
+			"S456p": "981312",
+			"T68p": "957"
+		},
+		"cytoskeletal reorganization": {
+			"T68p": "957"
+		},
+		"ubiquitination": {
+			"T383p": "1377",
+			"S379p": "981303",
+			"S456p": "981312"
+		},
+		"cell cycle regulation": {
+			"T205p": "12472901",
+			"T68p": "957",
+			"S210p": "12472900",
+			"T387p": "1384",
+			"S164p": "12472902",
+			"S33p": "1381",
+			"S35p": "1382",
+			"S19p": "1378",
+			"S73p": "2251602"
+		}
 	},
 	"577": {
-		"molecular association, regulation": ["74357", "15749", "2819", "2822", "2820", "14159400", "10140", "2192592", "33211"],
-		"enzymatic activity, induced": ["2819", "24401", "2822", "2820", "10140"],
-		"transcription, induced": ["10143", "2818"],
-		"cell growth, induced": ["2819"],
-		"protein conformation": ["2819", "2822", "2820"],
-		"cell growth, inhibited": ["10140"],
-		"enzymatic activity, inhibited": ["10143", "15749", "2818", "2821", "14159400"],
-		"cell differentiation, altered": ["2822", "2820", "10140"],
-		"transcription, altered": ["2822", "2820"],
-		"cell growth, altered": ["74357", "10143", "15749", "2818", "2822", "2820", "10140", "2192592", "33211"],
-		"cell cycle regulation": ["10140"]
+		"molecular association, regulation": {
+			"S729p": "10140",
+			"T599p": "2822",
+			"T401p": "15749",
+			"T753p": "33211",
+			"S750p": "2192592",
+			"S614p": "14159400",
+			"S151p": "74357",
+			"S446p": "2819",
+			"S602p": "2820"
+		},
+		"enzymatic activity, induced": {
+			"S446p": "2819",
+			"T599p": "2822",
+			"S602p": "2820",
+			"S579p": "24401",
+			"S729p": "10140"
+		},
+		"transcription, induced": {
+			"S365p": "10143",
+			"S429p": "2818"
+		},
+		"cell growth, induced": {
+			"S446p": "2819"
+		},
+		"protein conformation": {
+			"S446p": "2819",
+			"T599p": "2822",
+			"S602p": "2820"
+		},
+		"cell growth, inhibited": {
+			"S729p": "10140"
+		},
+		"enzymatic activity, inhibited": {
+			"T440p": "2821",
+			"S365p": "10143",
+			"S614p": "14159400",
+			"T401p": "15749",
+			"S429p": "2818"
+		},
+		"cell differentiation, altered": {
+			"T599p": "2822",
+			"S602p": "2820",
+			"S729p": "10140"
+		},
+		"transcription, altered": {
+			"T599p": "2822",
+			"S602p": "2820"
+		},
+		"cell growth, altered": {
+			"S729p": "10140",
+			"S429p": "2818",
+			"T599p": "2822",
+			"S750p": "2192592",
+			"T401p": "15749",
+			"S365p": "10143",
+			"S151p": "74357",
+			"T753p": "33211",
+			"S602p": "2820"
+		},
+		"cell cycle regulation": {
+			"S729p": "10140"
+		}
 	},
 	"2629": {
-		"transcription, inhibited": ["21919"],
-		"intracellular localization": ["21919", "50333", "55274", "29656200"],
-		"molecular association, regulation": ["55274"],
-		"transcription, induced": ["50333", "55274"],
-		"cell growth, induced": ["50333", "55274"],
-		"activity, induced": ["21919"],
-		"carcinogenesis, altered": ["21919"],
-		"cell growth, altered": ["21919"],
-		"transcription, altered": ["21919"]
+		"transcription, inhibited": {
+			"S102p": "21919"
+		},
+		"intracellular localization": {
+			"S165p": "50333",
+			"S102p": "21919",
+			"S176p": "55274",
+			"Y281p": "29656200"
+		},
+		"molecular association, regulation": {
+			"S176p": "55274"
+		},
+		"transcription, induced": {
+			"S165p": "50333",
+			"S176p": "55274"
+		},
+		"cell growth, induced": {
+			"S165p": "50333",
+			"S176p": "55274"
+		},
+		"activity, induced": {
+			"S102p": "21919"
+		},
+		"carcinogenesis, altered": {
+			"S102p": "21919"
+		},
+		"cell growth, altered": {
+			"S102p": "21919"
+		},
+		"transcription, altered": {
+			"S102p": "21919"
+		}
 	},
 	"564": {
-		"protein degradation": ["59070402"],
-		"intracellular localization": ["2199"],
-		"enzymatic activity, induced": ["25745817", "2199", "1025"],
-		"ubiquitination": ["59070402"]
+		"protein degradation": {
+			"T631p": "59070402"
+		},
+		"intracellular localization": {
+			"S2448p": "2199"
+		},
+		"enzymatic activity, induced": {
+			"S1415p": "25745817",
+			"S2481p": "1025",
+			"S2448p": "2199"
+		},
+		"ubiquitination": {
+			"T631p": "59070402"
+		}
 	},
 	"22501100": {
-		"activity, inhibited": ["2506706", "52674"],
-		"cell growth, induced": ["19380", "19381"],
-		"autophagy, inhibited": ["19380", "19381"],
-		"phosphorylation": ["52674"],
-		"molecular association, regulation": ["83030", "19380", "19381", "2506706", "52674"]
+		"activity, inhibited": {
+			"T246p": "52674",
+			"S221p": "2506706"
+		},
+		"cell growth, induced": {
+			"S203p": "19381",
+			"S202p": "19380"
+		},
+		"autophagy, inhibited": {
+			"S203p": "19381",
+			"S202p": "19380"
+		},
+		"phosphorylation": {
+			"T246p": "52674"
+		},
+		"molecular association, regulation": {
+			"T246p": "52674",
+			"S183p": "83030",
+			"S203p": "19381",
+			"S202p": "19380",
+			"S221p": "2506706"
+		}
 	},
 	"7848": {},
 	"13600": {
-		"protein stabilization": ["3213382"],
-		"ubiquitination": ["3213382"],
-		"intracellular localization": ["3213382"],
-		"cell cycle regulation": ["3213382"]
+		"protein stabilization": {
+			"S100p": "3213382"
+		},
+		"ubiquitination": {
+			"S100p": "3213382"
+		},
+		"intracellular localization": {
+			"S100p": "3213382"
+		},
+		"cell cycle regulation": {
+			"S100p": "3213382"
+		}
 	},
 	"3541": {
-		"molecular association, regulation": ["42979", "15725500", "8341", "31858261"],
-		"transcription, induced": ["8341", "31858261"],
-		"cell growth, induced": ["31858261"],
-		"phosphorylation": ["42979", "15725500"],
-		"activity, induced": ["8341"],
-		"protein conformation": ["8341"],
-		"transcription, altered": ["8341"],
-		"cell growth, altered": ["8341"]
+		"molecular association, regulation": {
+			"T184p": "31858261",
+			"S36p": "42979",
+			"S63p": "8341",
+			"S41p": "15725500"
+		},
+		"transcription, induced": {
+			"T184p": "31858261",
+			"S63p": "8341"
+		},
+		"cell growth, induced": {
+			"T184p": "31858261"
+		},
+		"phosphorylation": {
+			"S36p": "42979",
+			"S41p": "15725500"
+		},
+		"activity, induced": {
+			"S63p": "8341"
+		},
+		"protein conformation": {
+			"S63p": "8341"
+		},
+		"transcription, altered": {
+			"S63p": "8341"
+		},
+		"cell growth, altered": {
+			"S63p": "8341"
+		}
 	},
 	"1048": {
-		"apoptosis, inhibited": ["2754"],
-		"molecular association, regulation": ["2755", "2754"],
-		"transcription, induced": ["2755", "2754"],
-		"intracellular localization": ["2755"],
-		"transcription, inhibited": ["2755"],
-		"phosphorylation": ["3278836"],
-		"protein degradation": ["2755"],
-		"activity, induced": ["2755", "2754"],
-		"apoptosis, induced": ["2754"],
-		"cell differentiation, altered": ["2755"],
-		"transcription, altered": ["68979", "1668700", "2755", "2754"],
-		"cell growth, altered": ["2755", "2754"],
-		"sumoylation": ["2755", "2754"],
-		"cell cycle regulation": ["2755"]
+		"apoptosis, inhibited": {
+			"S727p": "2754"
+		},
+		"molecular association, regulation": {
+			"S727p": "2754",
+			"Y701p": "2755"
+		},
+		"transcription, induced": {
+			"S727p": "2754",
+			"Y701p": "2755"
+		},
+		"intracellular localization": {
+			"Y701p": "2755"
+		},
+		"transcription, inhibited": {
+			"Y701p": "2755"
+		},
+		"phosphorylation": {
+			"K703sm": "3278836"
+		},
+		"protein degradation": {
+			"Y701p": "2755"
+		},
+		"activity, induced": {
+			"S727p": "2754",
+			"Y701p": "2755"
+		},
+		"apoptosis, induced": {
+			"S727p": "2754"
+		},
+		"cell differentiation, altered": {
+			"Y701p": "2755"
+		},
+		"transcription, altered": {
+			"S727p": "2754",
+			"R31m1": "68979",
+			"R31m2": "1668700",
+			"Y701p": "2755"
+		},
+		"cell growth, altered": {
+			"S727p": "2754",
+			"Y701p": "2755"
+		},
+		"sumoylation": {
+			"S727p": "2754",
+			"Y701p": "2755"
+		},
+		"cell cycle regulation": {
+			"Y701p": "2755"
+		}
 	},
 	"22867": {},
 	"943": {
-		"activity, inhibited": ["21232", "10601", "21234"],
-		"transcription, inhibited": ["10599"],
-		"apoptosis, altered": ["2666", "1988200"],
-		"molecular association, regulation": ["2666", "8094", "10593", "10596", "2668", "21232", "10599", "10601", "21234"],
-		"transcription, induced": ["2666", "8094"],
-		"phosphorylation": ["10601"],
-		"cell motility, inhibited": ["10599"],
-		"apoptosis, induced": ["2666"],
-		"carcinogenesis, altered": ["17737505", "17737506", "17737504", "10596", "17737507"],
-		"protein stabilization": ["2666", "8094"],
-		"cell growth, altered": ["17737505", "17737506", "2666", "8094", "17737504", "10596", "17737507"],
-		"cell motility, induced": ["2666", "8094"],
-		"ubiquitination": ["10599", "10601"],
-		"activity, induced": ["2666", "8094", "1988200"],
-		"transcription, altered": ["2666", "8094", "10593", "10596", "1988200", "21232", "10601", "21234"]
+		"activity, inhibited": {
+			"S243p": "10601",
+			"T231p": "21232",
+			"S249p": "21234"
+		},
+		"transcription, inhibited": {
+			"T239p": "10599"
+		},
+		"apoptosis, altered": {
+			"T95p": "1988200",
+			"S63p": "2666"
+		},
+		"molecular association, regulation": {
+			"T93p": "10596",
+			"T239p": "10599",
+			"Y170p": "2668",
+			"S249p": "21234",
+			"T91p": "10593",
+			"S243p": "10601",
+			"S63p": "2666",
+			"T231p": "21232",
+			"S73p": "8094"
+		},
+		"transcription, induced": {
+			"S63p": "2666",
+			"S73p": "8094"
+		},
+		"phosphorylation": {
+			"S243p": "10601"
+		},
+		"cell motility, inhibited": {
+			"T239p": "10599"
+		},
+		"apoptosis, induced": {
+			"S63p": "2666"
+		},
+		"carcinogenesis, altered": {
+			"T93p": "10596",
+			"T2p": "17737505",
+			"T89p": "17737504",
+			"T286p": "17737507",
+			"T8p": "17737506"
+		},
+		"protein stabilization": {
+			"S63p": "2666",
+			"S73p": "8094"
+		},
+		"cell growth, altered": {
+			"T93p": "10596",
+			"T89p": "17737504",
+			"S63p": "2666",
+			"T286p": "17737507",
+			"T2p": "17737505",
+			"T8p": "17737506",
+			"S73p": "8094"
+		},
+		"cell motility, induced": {
+			"S63p": "2666",
+			"S73p": "8094"
+		},
+		"ubiquitination": {
+			"S243p": "10601",
+			"T239p": "10599"
+		},
+		"activity, induced": {
+			"T95p": "1988200",
+			"S63p": "2666",
+			"S73p": "8094"
+		},
+		"transcription, altered": {
+			"T93p": "10596",
+			"S249p": "21234",
+			"T91p": "10593",
+			"S243p": "10601",
+			"S63p": "2666",
+			"T95p": "1988200",
+			"T231p": "21232",
+			"S73p": "8094"
+		}
 	},
 	"648": {
-		"apoptosis, inhibited": ["3270"],
-		"cell growth, induced": ["3270", "3271", "3191825"],
-		"enzymatic activity, induced": ["2715309", "3270", "3271", "3191825", "5393400"],
-		"molecular association, regulation": ["3271", "4271243", "62370500", "23202900"],
-		"intracellular localization": ["3271"],
-		"protein stabilization": ["62370500"],
-		"cell cycle regulation": ["2715309", "63280000", "3270", "3271", "3191825", "5393400", "4271243", "62370500", "23202900"]
+		"apoptosis, inhibited": {
+			"S137p": "3270"
+		},
+		"cell growth, induced": {
+			"T214p": "3191825",
+			"T210p": "3271",
+			"S137p": "3270"
+		},
+		"enzymatic activity, induced": {
+			"T214p": "3191825",
+			"S326p": "5393400",
+			"T210p": "3271",
+			"S49p": "2715309",
+			"S137p": "3270"
+		},
+		"molecular association, regulation": {
+			"S330p": "4271243",
+			"Y425p": "62370500",
+			"T210p": "3271",
+			"S597p": "23202900"
+		},
+		"intracellular localization": {
+			"T210p": "3271"
+		},
+		"protein stabilization": {
+			"Y425p": "62370500"
+		},
+		"cell cycle regulation": {
+			"S326p": "5393400",
+			"S49p": "2715309",
+			"S330p": "4271243",
+			"S597p": "23202900",
+			"T210p": "3271",
+			"S137p": "3270",
+			"T214p": "3191825",
+			"Y425p": "62370500",
+			"S99p": "63280000"
+		}
 	},
 	"2791": {
-		"autophagy, induced": ["6364"],
-		"apoptosis, inhibited": ["18520", "6963"],
-		"apoptosis, altered": ["6963", "27713"],
-		"molecular association, regulation": ["18520", "6963", "8080934", "5003352", "8080935", "6364"],
-		"protein degradation": ["6963", "8080934", "5003352", "8080935"],
-		"cell adhesion, altered": ["6963"],
-		"transcription, altered": ["6963"],
-		"ubiquitination": ["8080934", "5003352", "8080935"]
+		"autophagy, induced": {
+			"T116p": "6364"
+		},
+		"apoptosis, inhibited": {
+			"S69p": "6963",
+			"S59p": "18520"
+		},
+		"apoptosis, altered": {
+			"S69p": "6963",
+			"S87p": "27713"
+		},
+		"molecular association, regulation": {
+			"S59p": "18520",
+			"S69p": "6963",
+			"T116p": "6364",
+			"S93p": "8080934",
+			"S94p": "5003352",
+			"S98p": "8080935"
+		},
+		"protein degradation": {
+			"S69p": "6963",
+			"S94p": "5003352",
+			"S98p": "8080935",
+			"S93p": "8080934"
+		},
+		"cell adhesion, altered": {
+			"S69p": "6963"
+		},
+		"transcription, altered": {
+			"S69p": "6963"
+		},
+		"ubiquitination": {
+			"S94p": "5003352",
+			"S98p": "8080935",
+			"S93p": "8080934"
+		}
 	}
 }
