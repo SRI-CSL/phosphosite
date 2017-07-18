@@ -105,10 +105,10 @@ def process_protein(conn, name):
     result_set = process_site(conn, pid)
 
     for spid in result_set:
-        process_control(conn, pid, spid)
+        process_control(conn, spid)
 
     # mark it as done
-    conn.cursor().execute('INSERT INTO site_success (phosphosite_id) VALUES(?)', [str(pid)])
+    set_site_success(conn, pid)
 
 
 
@@ -151,7 +151,7 @@ def processSecondLinkTds(conn, pid, tds, result_set):
 
 def put_site(conn, pid, category, site, val):
     cursor = conn.cursor()
-    sys.stderr.write('put_site(pid={0}, category={1}, site={2}, val={3})\n'.format(pid, category, site, val))
+    #sys.stderr.write('put_site(pid={0}, category={1}, site={2}, val={3})\n'.format(pid, category, site, val))
     category_id = get_site_category_id(conn, category)
     site_id = get_site_name_id(conn, site)
     cursor.execute('INSERT INTO site (site_pid, site_category_id, site_name_id, phosphosite_id) VALUES(?,?,?,?)', [pid, category_id, site_id, val])
@@ -159,17 +159,13 @@ def put_site(conn, pid, category, site, val):
 
 def process_site(conn, pid):
 
-    cursor = conn.cursor()
-
     #if is has failed previously skip it
-    cursor.execute('SELECT * FROM site_fail WHERE phosphosite_id=?', [str(pid)])
-    if cursor.fetchone() is not None:
+    if is_site_fail(conn, pid):
         sys.stderr.write('sites for {0} have already failed\n'.format(pid))
         return None
 
     #if it has succeeded previously skip it
-    cursor.execute('SELECT * FROM site_success WHERE phosphosite_id=?', [str(pid)])
-    if cursor.fetchone() is not None:
+    if is_site_success(conn, pid):
         sys.stderr.write('sites for {0} have already succeeded\n'.format(pid))
         return None
 
@@ -204,6 +200,34 @@ def get_site_category_id(conn, category):
     cursor.execute('INSERT INTO site_category (name) VALUES(?)', [category])
     return int(cursor.lastrowid)
 
+def is_site_fail(conn, pid):
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM site_fail WHERE phosphosite_id=?', [str(pid)])
+    if cursor.fetchone() is not None:
+        return True
+    return False
+
+def is_site_success(conn, pid):
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM site_success WHERE phosphosite_id=?', [str(pid)])
+    if cursor.fetchone() is not None:
+        return True
+    return False
+
+def set_site_fail(conn, pid):
+    conn.cursor().execute('INSERT INTO site_fail (phosphosite_id) VALUES(?)', [str(pid)])
+
+def set_site_success(conn, pid):
+    conn.cursor().execute('INSERT INTO site_success (phosphosite_id) VALUES(?)', [str(pid)])
+
+def get_control_category_id(conn, name):
+    cursor = conn.cursor()
+    cursor.execute('SELECT control_category_id FROM control_category WHERE name=?', [name])
+    snid = cursor.fetchone()
+    if snid is not None:
+        return int(snid[0])
+    cursor.execute('INSERT INTO control_category (name) VALUES(?)', [name])
+    return int(cursor.lastrowid)
 
 def get_control_name_id(conn, name):
     cursor = conn.cursor()
@@ -214,12 +238,114 @@ def get_control_name_id(conn, name):
     cursor.execute('INSERT INTO control_name (name) VALUES(?)', [name])
     return int(cursor.lastrowid)
 
+def is_control_fail(conn, pid):
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM control_fail WHERE phosphosite_id=?', [str(pid)])
+    if cursor.fetchone() is not None:
+        return True
+    return False
+
+def is_control_success(conn, pid):
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM control_success WHERE phosphosite_id=?', [str(pid)])
+    if cursor.fetchone() is not None:
+        return True
+    return False
+
+def set_control_fail(conn, pid):
+    conn.cursor().execute('INSERT INTO control_fail (phosphosite_id) VALUES(?)', [str(pid)])
+
+def set_control_success(conn, pid):
+    conn.cursor().execute('INSERT INTO control_success (phosphosite_id) VALUES(?)', [str(pid)])
 
 
 
-def process_control(conn, pid, spid):
-    sys.stderr.write('processing controls for {0} by {1}!\n'.format(pid, spid))
+def process_control(conn, pid):
+    sys.stderr.write('processing controls for {0}!\n'.format(pid))
 
+
+    #if is has failed previously skip it
+    if is_control_fail(conn, pid):
+        sys.stderr.write('controls for {0} have already failed\n'.format(pid))
+        return None
+
+    #if it has succeeded previously skip it
+    if is_control_success(conn, pid):
+        sys.stderr.write('controls for {0} have already succeeded\n'.format(pid))
+        return None
+
+
+    thirdLink(conn, pid)
+
+
+    # mark it as done
+    set_control_success(conn, pid)
+
+    conn.commit()
+
+url_3 = 'http://www.phosphosite.org/siteAction.action?id={0}'
+
+def thirdLink(conn, pid):
+    f =  urllib2.urlopen(url_3.format(pid))
+    html_doc = f.read()
+
+    soup = bs4.BeautifulSoup(html_doc, 'html.parser')
+
+    #ok get the references too.
+    references = getReferences(soup)
+
+    candidate = soup.find_all('td', string=re.compile('Controlled by '))  #
+    if candidate:
+        candidate = candidate[0].parent.parent #get the containing table.
+        #navigate down to the
+        candidate = candidate.contents[3]
+        candidate = candidate.contents[1]
+        candidate = candidate.contents[1]
+        tds = candidate.find_all('td')
+        processTds(conn, pid, tds, references)
+    else:
+        # mark it as failed
+        set_control_fail(conn, pid)
+
+def getReferences(soup):
+    references = {}
+    anchors = soup.find_all('a',class_="anchor",href=re.compile('#top'))
+    refs = []
+    for anchor in anchors:
+        refs.append((anchor, anchor.parent.parent.parent))
+    for ref in refs:
+        try:
+            references[int(ref[0].text)] = str(ref[1].find(href=re.compile("https://www.ncbi.nlm.nih.gov/")).text)
+        except:
+            pass
+
+    return references
+
+def put_control(conn, pid, category, name, val):
+    cursor = conn.cursor()
+    category_id = get_control_category_id(conn, category)
+    name_id = get_control_name_id(conn, name)
+    cursor.execute('INSERT INTO control (phosphosite_id, control_category_id, control_name_id, controller) VALUES(?,?,?,?)', [pid, category_id, name_id, val])
+
+def processSpans(conn, pid, td, references, category):
+    for child in td.contents:
+        if isinstance(child, bs4.element.NavigableString):
+            continue
+        if child.name == 'span':
+            key = str(child.text).replace(' (human)', '').replace("'", '') #5'-methylthioadenosine (1)
+        else:
+            put_control(conn, pid, category, key, references[int(child.text)])
+
+
+def processTds(conn, pid, tds, references):
+    num = 0
+    category = ''
+    while tds:
+        num += 1
+        category = str(tds[0].text)
+        num += 1
+        processSpans(conn, pid, tds[1], references, category)
+        tds = tds[2:]
 
 
 for protein in protein_list:

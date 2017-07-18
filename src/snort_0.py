@@ -203,12 +203,13 @@ def processSecondLinkTds(tds, hmap):
                 key = key[0:colon]
             else:
                 key = key.rstrip()
-            results = []
+            results = {}
             hmap[key] = results
             for a in anchors:
+                akey = a.text.encode('ascii', 'ignore').strip()
                 match = idPattern.search(str(a))
                 if match:
-                    results.append(match.group(1))
+                    results[akey] = match.group(1)
     #print hmap
 
 
@@ -275,7 +276,7 @@ def processTds(pid, tds, references, results, fails):
         #print 'td_{0}.references'.format(num), [ references[int(x.text)] for x in tds[1].find_all('a') ]
         spans = processSpans(tds[1], references, results, category)
         if spans:
-            results[category] = processSpans(tds[1], references, results, category)
+            results[category] = spans
         else:
             print 'Nyet'
             fails[pid] = True

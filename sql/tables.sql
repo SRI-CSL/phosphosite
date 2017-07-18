@@ -38,6 +38,11 @@ CREATE TABLE site (
 );
 
 
+CREATE TABLE control_category (
+    control_category_id integer primary key autoincrement,
+    name text not null
+);
+
 CREATE TABLE control_name (
     control_name_id integer primary key autoincrement,
     name text not null
@@ -46,8 +51,8 @@ CREATE TABLE control_name (
 
 CREATE TABLE control (
     phosphosite_id integer not null,
+    control_category_id integer not null,
     control_name_id integer not null,
-    name text not null,
     controller integer not null
 );
 
