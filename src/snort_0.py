@@ -7,9 +7,6 @@ import sys
 #pip install beautifulsoup4
 import bs4
 
-
-import sqlite3
-
 proteins = [
     "AKT1",
     "APC",
@@ -38,11 +35,6 @@ proteins = [
     "TTK",
     "YBX1",
 ]
-
-
-conn = sqlite3.connect('../db/phophosite.sqlite')
-cursor = conn.cursor()
-
 
 
 
