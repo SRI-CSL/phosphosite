@@ -154,7 +154,7 @@ def put_site(conn, pid, category, site, val):
     sys.stderr.write('put_site(pid={0}, category={1}, site={2}, val={3})\n'.format(pid, category, site, val))
     category_id = get_site_category_id(conn, category)
     site_id = get_site_name_id(conn, site)
-    cursor.execute('INSERT INTO site (site_pid, site_category_id, site_name_id, phosphosite_id) VALUES(?)', [pid, category_id, site_id, val])
+    cursor.execute('INSERT INTO site (site_pid, site_category_id, site_name_id, phosphosite_id) VALUES(?,?,?,?)', [pid, category_id, site_id, val])
 
 
 def process_site(conn, pid):
@@ -186,28 +186,31 @@ def process_site(conn, pid):
 
 
 def get_site_name_id(conn, name):
+    cursor = conn.cursor()
     cursor.execute('SELECT site_name_id FROM site_name WHERE name=?', [name])
     snid = cursor.fetchone()
     if snid is not None:
-        return int(snid)
+        return int(snid[0])
     cursor.execute('INSERT INTO site_name (name) VALUES(?)', [name])
     return int(cursor.lastrowid)
 
 
 def get_site_category_id(conn, category):
-    cursor.execute('SELECT site_category_id FROM site_category WHERE category=?', [category])
+    cursor = conn.cursor()
+    cursor.execute('SELECT site_category_id FROM site_category WHERE name=?', [category])
     scid = cursor.fetchone()
     if scid is not None:
-        return int(scid)
-    cursor.execute('INSERT INTO site_category (category) VALUES(?)', [category])
+        return int(scid[0])
+    cursor.execute('INSERT INTO site_category (name) VALUES(?)', [category])
     return int(cursor.lastrowid)
 
 
 def get_control_name_id(conn, name):
+    cursor = conn.cursor()
     cursor.execute('SELECT control_name_id FROM control_name WHERE name=?', [name])
     snid = cursor.fetchone()
     if snid is not None:
-        return int(snid)
+        return int(snid[0])
     cursor.execute('INSERT INTO control_name (name) VALUES(?)', [name])
     return int(cursor.lastrowid)
 
