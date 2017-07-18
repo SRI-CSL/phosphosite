@@ -43,8 +43,30 @@ def process_proteins(conn, db):
     dump_database(db, 'proteins_sql.json')
 
 
-def process_site_row(db, row):
-    pass
+def process_site_row(row, db):
+    (pid, category, name, spid) = row
+    #fix me: tehre must be a better way than this
+    pid = str(pid)
+    category = str(category)
+    name = str(name)
+    spid = str(spid)
+    d_pid = None
+    #get the dictionary associated with pid in db
+    if pid in db:
+        d_pid = db[pid]
+    else:
+        d_pid = {}
+        db[pid] = d_pid
+
+    d_category = None
+    if category in d_pid:
+        d_category = d_pid[category]
+    else:
+        d_category = {}
+        d_pid[category] = d_category
+    d_category[name] = spid
+
+
 
 def process_sites(conn, db):
     cursor = conn.cursor()
@@ -61,7 +83,8 @@ def process_sites(conn, db):
         process_site_row(row, db)
     dump_database(db, 'sites_sql.json')
 
-def process_control_row(db, row):
+def process_control_row(row, db):
+    (pid, category, name, cpid) = row
     pass
 
 
