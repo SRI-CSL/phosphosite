@@ -31,6 +31,7 @@ CREATE TABLE site_fail (
 
 CREATE TABLE site (
     site_id integer primary key autoincrement,
+    site_pid integer not null,
     site_category_id integer not null,
     site_name_id integer not null,
     phosphosite_id integer not null

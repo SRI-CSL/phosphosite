@@ -104,6 +104,15 @@ def process_protein(conn, name):
 
     result_set = process_site(conn, pid)
 
+    for spid in result_set:
+        process_control(conn, pid, spid)
+
+    # mark it as done
+    conn.cursor().execute('INSERT INTO site_success (phosphosite_id) VALUES(?)', [str(pid)])
+
+
+
+
 
 url_2 = 'http://www.phosphosite.org/proteinModificationSitesDomainsAction.action?id={0}&showAllSites=true'
 
@@ -135,11 +144,18 @@ def processSecondLinkTds(conn, pid, tds, result_set):
                 match = idPattern.search(str(a))
                 if match:
                     site = a.text.encode('ascii', 'ignore').strip()
-                    put_site(conn, pid, key, site, match.group(1), result_set)
+                    val = match.group(1)
+                    result_set.add(val)
+                    put_site(conn, pid, key, site, match.group(1))
 
 
-def put_site(conn, pid, key, site, val, result_set):
-    sys.stderr.write('put_site(pid={0}, key={1}, site={2}, val={3})\n'.format(pid, key, site, val))
+def put_site(conn, pid, category, site, val):
+    cursor = conn.cursor()
+    sys.stderr.write('put_site(pid={0}, category={1}, site={2}, val={3})\n'.format(pid, category, site, val))
+    category_id = get_site_category_id(conn, category)
+    site_id = get_site_name_id(conn, site)
+    cursor.execute('INSERT INTO site (site_pid, site_category_id, site_name_id, phosphosite_id) VALUES(?)', [pid, category_id, site_id, val])
+
 
 def process_site(conn, pid):
 
@@ -162,15 +178,7 @@ def process_site(conn, pid):
 
     secondLink(conn, pid, result_set)
 
-    sys.stderr.write('processing sites for {0}!\n'.format(pid))
-
-
-
-
-
-
-
-
+    sys.stderr.write('processed sites for {0} got:\n{1}!\n'.format(pid, list(result_set)))
 
     conn.commit()
 
@@ -203,6 +211,11 @@ def get_control_name_id(conn, name):
     cursor.execute('INSERT INTO control_name (name) VALUES(?)', [name])
     return int(cursor.lastrowid)
 
+
+
+
+def process_control(conn, pid, spid):
+    sys.stderr.write('processing controls for {0} by {1}!\n'.format(pid, spid))
 
 
 
