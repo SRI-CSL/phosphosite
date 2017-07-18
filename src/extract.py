@@ -4,6 +4,8 @@ import re
 import sys
 import sqlite3
 
+# our local utilities
+from sql_aux import *
 
 # extracts the database out into the "desired" json
 
@@ -43,7 +45,7 @@ def process_proteins(conn, db):
 
 
 def process_sites(conn, db):
-    pass
+     pass
 
 
 def process_controls(conn, db):
