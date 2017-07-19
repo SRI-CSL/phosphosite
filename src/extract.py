@@ -44,12 +44,7 @@ def process_proteins(conn, db):
 
 
 def process_site_row(row, db):
-    (pid, category, name, spid) = row
-    #fix me: tehre must be a better way than this
-    pid = str(pid)
-    category = str(category)
-    name = str(name)
-    spid = str(spid)
+    (pid, category, name, spid) = tuple(str(x) for x in row)
     d_pid = None
     #get the dictionary associated with pid in db
     if pid in db:
@@ -84,7 +79,26 @@ def process_sites(conn, db):
     dump_database(db, 'sites_sql.json')
 
 def process_control_row(row, db):
-    (pid, category, name, cpid) = row
+    (pid, category, name, cpid) = tuple(str(x) for x in row)
+    d_pid = None
+    #get the dictionary associated with pid in db
+    if pid in db:
+        d_pid = db[pid]
+    else:
+        d_pid = {}
+        db[pid] = d_pid
+
+    d_category = None
+    if category in d_pid:
+        d_category = d_pid[category]
+    else:
+        d_category = {}
+        d_pid[category] = d_category
+
+    if name in d_category:
+        d_category[name].append(cpid)
+    else:
+        d_category[name] = [ cpid ]
     pass
 
 
