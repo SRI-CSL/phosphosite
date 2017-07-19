@@ -59,16 +59,22 @@ def get_protein_id(conn, name):
     conn.commit()
     return pid
 
+def set_protein_fail(conn, name):
+    conn.cursor().execute('INSERT INTO protein_fail (name) VALUES(?)', [str(name)])
+
 
 
 def process_protein(conn, name):
     pid = get_protein_id(conn, name)
     print '{0}  has id {1}\n'.format(name, pid)
-    result_set = process_site(conn, pid)
-    if result_set:
-        for spid in result_set:
-            process_control(conn, spid)
-            # mark it as done
+    if int(pid) < 0:
+        set_protein_fail(conn, name)
+    else:
+        result_set = process_site(conn, pid)
+        if result_set:
+            for spid in result_set:
+                process_control(conn, spid)
+                # mark it as done
         set_site_success(conn, pid)
 
 
