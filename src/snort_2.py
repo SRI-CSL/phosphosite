@@ -16,6 +16,6 @@ count = 0
 for protein in protein_list:
     print '{0}: name = {1}'.format(count, protein)
     count += 1
-    #process_protein(conn, protein)
+    process_protein(conn, protein)
 
 conn.close()

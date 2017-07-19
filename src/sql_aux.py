@@ -40,6 +40,7 @@ def get_protein_id(conn, name):
     url_1 = "http://www.phosphosite.org/simpleSearchSubmitAction.action?queryId=-1&from=0&searchStr={0}"
     url = url_1.format(name)
     f =  urllib2.urlopen(url)
+    print url
     html_doc = f.read()
     soup = bs4.BeautifulSoup(html_doc, 'html.parser')
     candidate = soup.find_all('a', class_='link13HoverRed')
@@ -74,9 +75,12 @@ def process_protein(conn, name):
 
 def secondLink(conn, pid, result_set):
     url_2 = 'http://www.phosphosite.org/proteinModificationSitesDomainsAction.action?id={0}&showAllSites=true'
-    f =  urllib2.urlopen(url_2.format(pid))
+    url = url_2.format(pid)
+    f =  urllib2.urlopen(url)
     html_doc = f.read()
     soup = bs4.BeautifulSoup(html_doc, 'html.parser')
+    print url
+    #print soup.prettify()
     target = soup.find_all('td', text='Sites Implicated In ')
     if target:
         target = target[0].parent.parent
