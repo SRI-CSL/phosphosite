@@ -30,13 +30,14 @@ def extract_site_row(row, db):
     else:
         d_pid = {}
         db[pid] = d_pid
-
+    #get the dictionary associated with category in d_pid
     d_category = None
     if category in d_pid:
         d_category = d_pid[category]
     else:
         d_category = {}
         d_pid[category] = d_category
+    #update the d_category dictionary
     d_category[name] = spid
 
 
@@ -65,14 +66,14 @@ def extract_control_row(row, db):
     else:
         d_pid = {}
         db[pid] = d_pid
-
+    #get the dictionary associated with category in d_pid
     d_category = None
     if category in d_pid:
         d_category = d_pid[category]
     else:
         d_category = {}
         d_pid[category] = d_category
-
+    # add cpid to the list associated with name in d_category
     if name in d_category:
         d_category[name].append(cpid)
     else:
