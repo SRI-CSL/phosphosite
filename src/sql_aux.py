@@ -1,12 +1,99 @@
 import re
 import urllib2
 import sys
+import json
 
 #pip install beautifulsoup4
 import bs4
 
 
 import sqlite3
+
+
+def extract_proteins(conn, db):
+    cursor = conn.cursor()
+    cursor.execute('SELECT name, phosphosite_id FROM protein')
+    while True:
+        row = cursor.fetchone()
+        if row is None:
+            break
+        db[str(row[0])] = row[1]
+    dump_database(db, 'proteins_sql.json')
+
+
+def extract_site_row(row, db):
+    (pid, category, name, spid) = tuple(str(x) for x in row)
+    d_pid = None
+    #get the dictionary associated with pid in db
+    if pid in db:
+        d_pid = db[pid]
+    else:
+        d_pid = {}
+        db[pid] = d_pid
+
+    d_category = None
+    if category in d_pid:
+        d_category = d_pid[category]
+    else:
+        d_category = {}
+        d_pid[category] = d_category
+    d_category[name] = spid
+
+
+
+def extract_sites(conn, db):
+    cursor = conn.cursor()
+    site_query = '''
+    SELECT s.site_pid, sc.name, sn.name, s.phosphosite_id
+    FROM site AS s, site_category AS sc, site_name AS sn
+    WHERE s.site_category_id = sc.site_category_id AND  s.site_name_id = sn.site_name_id
+    '''
+    cursor.execute(site_query)
+    while True:
+        row = cursor.fetchone()
+        if row is None:
+            break
+        extract_site_row(row, db)
+    dump_database(db, 'sites_sql.json')
+
+def extract_control_row(row, db):
+    (pid, category, name, cpid) = tuple(str(x) for x in row)
+    d_pid = None
+    #get the dictionary associated with pid in db
+    if pid in db:
+        d_pid = db[pid]
+    else:
+        d_pid = {}
+        db[pid] = d_pid
+
+    d_category = None
+    if category in d_pid:
+        d_category = d_pid[category]
+    else:
+        d_category = {}
+        d_pid[category] = d_category
+
+    if name in d_category:
+        d_category[name].append(cpid)
+    else:
+        d_category[name] = [ cpid ]
+    pass
+
+
+def extract_controls(conn, db):
+    cursor = conn.cursor()
+    control_query = '''
+    SELECT c.phosphosite_id, cc.name, cn.name, c.controller
+    FROM control AS c, control_category AS cc, control_name AS cn
+    WHERE c.control_category_id = cc.control_category_id AND  c.control_name_id = cn.control_name_id
+    '''
+    cursor.execute(control_query)
+    while True:
+        row = cursor.fetchone()
+        if row is None:
+            break
+        extract_control_row(row, db)
+    dump_database(db, 'controls_sql.json')
 
 
 idPattern = re.compile('id=(\d*)')
@@ -20,6 +107,11 @@ def file2list(path):
             if line:
                 retval.append(line)
     return retval
+
+def dump_database(database, name):
+    with open(name, "w") as dbf:
+        dbstr = json.dumps(database, indent=4, sort_keys=True)
+        dbf.write(dbstr.replace("'", '"'))
 
 
 def get_protein_id(conn, name):
