@@ -18,7 +18,7 @@ def extract_proteins(conn, db):
         if row is None:
             break
         db[str(row[0])] = row[1]
-    dump_database(db, 'proteins_sql.json')
+
 
 
 def extract_site_row(row, db):
@@ -55,7 +55,6 @@ def extract_sites(conn, db):
         if row is None:
             break
         extract_site_row(row, db)
-    dump_database(db, 'sites_sql.json')
 
 def extract_control_row(row, db):
     (pid, category, name, cpid) = tuple(str(x) for x in row)
@@ -94,7 +93,6 @@ def extract_controls(conn, db):
         if row is None:
             break
         extract_control_row(row, db)
-    dump_database(db, 'controls_sql.json')
 
 
 idPattern = re.compile('id=(\d*)')

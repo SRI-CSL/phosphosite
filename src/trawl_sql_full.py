@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 
+#full trawl; take about 8 hours.
+
 import sqlite3
 
 # our local utilities

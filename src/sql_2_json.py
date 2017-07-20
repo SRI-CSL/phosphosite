@@ -25,5 +25,10 @@ conn = sqlite3.connect('../db/phosphosite_full.sqlite')
 
 
 extract_proteins(conn, database_0)
+dump_database(database_0, 'proteins_sql.json')
+
 extract_sites(conn, database_1)
+dump_database(database_1, 'sites_sql.json')
+
 extract_controls(conn, database_2)
+dump_database(database_2, 'controls_sql.json')
