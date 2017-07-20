@@ -21,7 +21,7 @@ database_1 = {}
 database_2 = {}
 
 
-conn = sqlite3.connect('../db/phosphosite.sqlite')
+conn = sqlite3.connect('../db/phosphosite_full.sqlite')
 
 
 extract_proteins(conn, database_0)
